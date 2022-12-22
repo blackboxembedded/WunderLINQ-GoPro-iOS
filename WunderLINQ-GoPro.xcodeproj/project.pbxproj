@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		7E17C2A729550C0600CF2E96 /* WunderLINQGoProApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E17C2A629550C0600CF2E96 /* WunderLINQGoProApp.swift */; };
+		7E17C2AA2955153400CF2E96 /* KeyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E17C2A92955153400CF2E96 /* KeyController.swift */; };
 		C9401CD82631EF9B00E5208E /* CameraSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9401CD72631EF9B00E5208E /* CameraSelectionView.swift */; };
 		C9401CDA2631EF9F00E5208E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C9401CD92631EF9F00E5208E /* Assets.xcassets */; };
 		C9401CDD2631EF9F00E5208E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C9401CDC2631EF9F00E5208E /* Preview Assets.xcassets */; };
@@ -22,6 +23,7 @@
 
 /* Begin PBXFileReference section */
 		7E17C2A629550C0600CF2E96 /* WunderLINQGoProApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WunderLINQGoProApp.swift; sourceTree = "<group>"; };
+		7E17C2A92955153400CF2E96 /* KeyController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyController.swift; sourceTree = "<group>"; };
 		C9401CD22631EF9B00E5208E /* WunderLINQ-GoPro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "WunderLINQ-GoPro.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9401CD72631EF9B00E5208E /* CameraSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraSelectionView.swift; sourceTree = "<group>"; };
 		C9401CD92631EF9F00E5208E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -49,6 +51,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7E17C2A82955151800CF2E96 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				7E17C2A92955153400CF2E96 /* KeyController.swift */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
 		C9401CC92631EF9B00E5208E = {
 			isa = PBXGroup;
 			children = (
@@ -73,6 +83,7 @@
 				C9401D07263200F400E5208E /* BLE */,
 				C9401D092632012300E5208E /* Helpers */,
 				C9401D06263200E800E5208E /* Views */,
+				7E17C2A82955151800CF2E96 /* Classes */,
 				C9401D03263200C400E5208E /* CameraError.swift */,
 				7E17C2A629550C0600CF2E96 /* WunderLINQGoProApp.swift */,
 				C9401CD92631EF9F00E5208E /* Assets.xcassets */,
@@ -201,6 +212,7 @@
 				7E17C2A729550C0600CF2E96 /* WunderLINQGoProApp.swift in Sources */,
 				C9401CE92631EFE200E5208E /* Peripheral.swift in Sources */,
 				C9401CEC2631EFF900E5208E /* Atomic.swift in Sources */,
+				7E17C2AA2955153400CF2E96 /* KeyController.swift in Sources */,
 				C9401D04263200C400E5208E /* CameraError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
