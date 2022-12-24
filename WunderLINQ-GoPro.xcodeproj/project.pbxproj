@@ -3,231 +3,350 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 56;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7E17C2A729550C0600CF2E96 /* WunderLINQGoProApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E17C2A629550C0600CF2E96 /* WunderLINQGoProApp.swift */; };
-		7E17C2AA2955153400CF2E96 /* KeyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E17C2A92955153400CF2E96 /* KeyController.swift */; };
-		C9401CD82631EF9B00E5208E /* CameraSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9401CD72631EF9B00E5208E /* CameraSelectionView.swift */; };
-		C9401CDA2631EF9F00E5208E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C9401CD92631EF9F00E5208E /* Assets.xcassets */; };
-		C9401CDD2631EF9F00E5208E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C9401CDC2631EF9F00E5208E /* Preview Assets.xcassets */; };
-		C9401CE62631EFC300E5208E /* CentralManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9401CE52631EFC300E5208E /* CentralManager.swift */; };
-		C9401CE92631EFE200E5208E /* Peripheral.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9401CE82631EFE200E5208E /* Peripheral.swift */; };
-		C9401CEC2631EFF900E5208E /* Atomic.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9401CEB2631EFF900E5208E /* Atomic.swift */; };
-		C9401CF22631FBFD00E5208E /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9401CF12631FBFD00E5208E /* CameraView.swift */; };
-		C9401D04263200C400E5208E /* CameraError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9401D03263200C400E5208E /* CameraError.swift */; };
-		C9401D0B2632015600E5208E /* Peripheral+Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9401D0A2632015600E5208E /* Peripheral+Camera.swift */; };
-		C9628A812636FEEB009101EC /* NetworkExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9628A802636FEEB009101EC /* NetworkExtension.framework */; };
+		7E046BA32956160D0061A5F4 /* CameraError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E046BA22956160D0061A5F4 /* CameraError.swift */; };
+		7E046BA9295616C30061A5F4 /* Peripheral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E046BA7295616C20061A5F4 /* Peripheral.swift */; };
+		7E046BAA295616C30061A5F4 /* Peripheral+Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E046BA8295616C30061A5F4 /* Peripheral+Camera.swift */; };
+		7E046BAB295616C30061A5F4 /* CentralManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E046BA6295616C20061A5F4 /* CentralManager.swift */; };
+		7E046BAD295616C60061A5F4 /* Atomic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E046BAC295616C60061A5F4 /* Atomic.swift */; };
+		7E046BAF295629A90061A5F4 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E046BAE295629A90061A5F4 /* CameraViewController.swift */; };
+		7E17C2BB29560E0900CF2E96 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E17C2BA29560E0900CF2E96 /* AppDelegate.swift */; };
+		7E17C2BD29560E0900CF2E96 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E17C2BC29560E0900CF2E96 /* SceneDelegate.swift */; };
+		7E17C2BF29560E0900CF2E96 /* CameraListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E17C2BE29560E0900CF2E96 /* CameraListController.swift */; };
+		7E17C2C229560E0900CF2E96 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7E17C2C029560E0900CF2E96 /* Main.storyboard */; };
+		7E17C2C429560E0B00CF2E96 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7E17C2C329560E0B00CF2E96 /* Assets.xcassets */; };
+		7E17C2C729560E0B00CF2E96 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7E17C2C529560E0B00CF2E96 /* LaunchScreen.storyboard */; };
+		7E17C2D229560E0B00CF2E96 /* WunderLINQ_GoProTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E17C2D129560E0B00CF2E96 /* WunderLINQ_GoProTests.swift */; };
+		7E17C2DC29560E0B00CF2E96 /* WunderLINQ_GoProUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E17C2DB29560E0B00CF2E96 /* WunderLINQ_GoProUITests.swift */; };
+		7E17C2DE29560E0B00CF2E96 /* WunderLINQ_GoProUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E17C2DD29560E0B00CF2E96 /* WunderLINQ_GoProUITestsLaunchTests.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		7E17C2CE29560E0B00CF2E96 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7E17C2AF29560E0900CF2E96 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7E17C2B629560E0900CF2E96;
+			remoteInfo = "WunderLINQ-GoPro";
+		};
+		7E17C2D829560E0B00CF2E96 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7E17C2AF29560E0900CF2E96 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7E17C2B629560E0900CF2E96;
+			remoteInfo = "WunderLINQ-GoPro";
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
-		7E17C2A629550C0600CF2E96 /* WunderLINQGoProApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WunderLINQGoProApp.swift; sourceTree = "<group>"; };
-		7E17C2A92955153400CF2E96 /* KeyController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyController.swift; sourceTree = "<group>"; };
-		C9401CD22631EF9B00E5208E /* WunderLINQ-GoPro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "WunderLINQ-GoPro.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		C9401CD72631EF9B00E5208E /* CameraSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraSelectionView.swift; sourceTree = "<group>"; };
-		C9401CD92631EF9F00E5208E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		C9401CDC2631EF9F00E5208E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		C9401CDE2631EF9F00E5208E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C9401CE52631EFC300E5208E /* CentralManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CentralManager.swift; sourceTree = "<group>"; };
-		C9401CE82631EFE200E5208E /* Peripheral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Peripheral.swift; sourceTree = "<group>"; };
-		C9401CEB2631EFF900E5208E /* Atomic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Atomic.swift; sourceTree = "<group>"; };
-		C9401CF12631FBFD00E5208E /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
-		C9401D03263200C400E5208E /* CameraError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraError.swift; sourceTree = "<group>"; };
-		C9401D0A2632015600E5208E /* Peripheral+Camera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Peripheral+Camera.swift"; sourceTree = "<group>"; };
-		C9628A7E2636FEEB009101EC /* WunderLINQ-GoPro.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "WunderLINQ-GoPro.entitlements"; sourceTree = "<group>"; };
-		C9628A802636FEEB009101EC /* NetworkExtension.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NetworkExtension.framework; path = System/Library/Frameworks/NetworkExtension.framework; sourceTree = SDKROOT; };
+		7E046BA22956160D0061A5F4 /* CameraError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraError.swift; sourceTree = "<group>"; };
+		7E046BA6295616C20061A5F4 /* CentralManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CentralManager.swift; sourceTree = "<group>"; };
+		7E046BA7295616C20061A5F4 /* Peripheral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Peripheral.swift; sourceTree = "<group>"; };
+		7E046BA8295616C30061A5F4 /* Peripheral+Camera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Peripheral+Camera.swift"; sourceTree = "<group>"; };
+		7E046BAC295616C60061A5F4 /* Atomic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Atomic.swift; sourceTree = "<group>"; };
+		7E046BAE295629A90061A5F4 /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
+		7E17C2B729560E0900CF2E96 /* WunderLINQ-GoPro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "WunderLINQ-GoPro.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7E17C2BA29560E0900CF2E96 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		7E17C2BC29560E0900CF2E96 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		7E17C2BE29560E0900CF2E96 /* CameraListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraListController.swift; sourceTree = "<group>"; };
+		7E17C2C129560E0900CF2E96 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		7E17C2C329560E0B00CF2E96 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		7E17C2C629560E0B00CF2E96 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		7E17C2C829560E0B00CF2E96 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7E17C2CD29560E0B00CF2E96 /* WunderLINQ-GoProTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "WunderLINQ-GoProTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7E17C2D129560E0B00CF2E96 /* WunderLINQ_GoProTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WunderLINQ_GoProTests.swift; sourceTree = "<group>"; };
+		7E17C2D729560E0B00CF2E96 /* WunderLINQ-GoProUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "WunderLINQ-GoProUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7E17C2DB29560E0B00CF2E96 /* WunderLINQ_GoProUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WunderLINQ_GoProUITests.swift; sourceTree = "<group>"; };
+		7E17C2DD29560E0B00CF2E96 /* WunderLINQ_GoProUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WunderLINQ_GoProUITestsLaunchTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		C9401CCF2631EF9B00E5208E /* Frameworks */ = {
+		7E17C2B429560E0900CF2E96 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C9628A812636FEEB009101EC /* NetworkExtension.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7E17C2CA29560E0B00CF2E96 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7E17C2D429560E0B00CF2E96 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		7E17C2A82955151800CF2E96 /* Classes */ = {
+		7E17C2AE29560E0900CF2E96 = {
 			isa = PBXGroup;
 			children = (
-				7E17C2A92955153400CF2E96 /* KeyController.swift */,
-			);
-			path = Classes;
-			sourceTree = "<group>";
-		};
-		C9401CC92631EF9B00E5208E = {
-			isa = PBXGroup;
-			children = (
-				C9401CD42631EF9B00E5208E /* WunderLINQ-GoPro */,
-				C9401CD32631EF9B00E5208E /* Products */,
-				C9628A7F2636FEEB009101EC /* Frameworks */,
+				7E17C2B929560E0900CF2E96 /* WunderLINQ-GoPro */,
+				7E17C2D029560E0B00CF2E96 /* WunderLINQ-GoProTests */,
+				7E17C2DA29560E0B00CF2E96 /* WunderLINQ-GoProUITests */,
+				7E17C2B829560E0900CF2E96 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		C9401CD32631EF9B00E5208E /* Products */ = {
+		7E17C2B829560E0900CF2E96 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				C9401CD22631EF9B00E5208E /* WunderLINQ-GoPro.app */,
+				7E17C2B729560E0900CF2E96 /* WunderLINQ-GoPro.app */,
+				7E17C2CD29560E0B00CF2E96 /* WunderLINQ-GoProTests.xctest */,
+				7E17C2D729560E0B00CF2E96 /* WunderLINQ-GoProUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		C9401CD42631EF9B00E5208E /* WunderLINQ-GoPro */ = {
+		7E17C2B929560E0900CF2E96 /* WunderLINQ-GoPro */ = {
 			isa = PBXGroup;
 			children = (
-				C9628A7E2636FEEB009101EC /* WunderLINQ-GoPro.entitlements */,
-				C9401D07263200F400E5208E /* BLE */,
-				C9401D092632012300E5208E /* Helpers */,
-				C9401D06263200E800E5208E /* Views */,
-				7E17C2A82955151800CF2E96 /* Classes */,
-				C9401D03263200C400E5208E /* CameraError.swift */,
-				7E17C2A629550C0600CF2E96 /* WunderLINQGoProApp.swift */,
-				C9401CD92631EF9F00E5208E /* Assets.xcassets */,
-				C9401CDE2631EF9F00E5208E /* Info.plist */,
-				C9401CDB2631EF9F00E5208E /* Preview Content */,
+				7E17C2BA29560E0900CF2E96 /* AppDelegate.swift */,
+				7E17C2BC29560E0900CF2E96 /* SceneDelegate.swift */,
+				7E046BA22956160D0061A5F4 /* CameraError.swift */,
+				7E17C2BE29560E0900CF2E96 /* CameraListController.swift */,
+				7E046BA6295616C20061A5F4 /* CentralManager.swift */,
+				7E046BA7295616C20061A5F4 /* Peripheral.swift */,
+				7E046BA8295616C30061A5F4 /* Peripheral+Camera.swift */,
+				7E046BAC295616C60061A5F4 /* Atomic.swift */,
+				7E17C2C029560E0900CF2E96 /* Main.storyboard */,
+				7E17C2C329560E0B00CF2E96 /* Assets.xcassets */,
+				7E17C2C529560E0B00CF2E96 /* LaunchScreen.storyboard */,
+				7E17C2C829560E0B00CF2E96 /* Info.plist */,
+				7E046BAE295629A90061A5F4 /* CameraViewController.swift */,
 			);
 			path = "WunderLINQ-GoPro";
 			sourceTree = "<group>";
 		};
-		C9401CDB2631EF9F00E5208E /* Preview Content */ = {
+		7E17C2D029560E0B00CF2E96 /* WunderLINQ-GoProTests */ = {
 			isa = PBXGroup;
 			children = (
-				C9401CDC2631EF9F00E5208E /* Preview Assets.xcassets */,
+				7E17C2D129560E0B00CF2E96 /* WunderLINQ_GoProTests.swift */,
 			);
-			path = "Preview Content";
+			path = "WunderLINQ-GoProTests";
 			sourceTree = "<group>";
 		};
-		C9401D06263200E800E5208E /* Views */ = {
+		7E17C2DA29560E0B00CF2E96 /* WunderLINQ-GoProUITests */ = {
 			isa = PBXGroup;
 			children = (
-				C9401CD72631EF9B00E5208E /* CameraSelectionView.swift */,
-				C9401CF12631FBFD00E5208E /* CameraView.swift */,
+				7E17C2DB29560E0B00CF2E96 /* WunderLINQ_GoProUITests.swift */,
+				7E17C2DD29560E0B00CF2E96 /* WunderLINQ_GoProUITestsLaunchTests.swift */,
 			);
-			path = Views;
-			sourceTree = "<group>";
-		};
-		C9401D07263200F400E5208E /* BLE */ = {
-			isa = PBXGroup;
-			children = (
-				C9401CE52631EFC300E5208E /* CentralManager.swift */,
-				C9401CE82631EFE200E5208E /* Peripheral.swift */,
-				C9401D0A2632015600E5208E /* Peripheral+Camera.swift */,
-			);
-			path = BLE;
-			sourceTree = "<group>";
-		};
-		C9401D092632012300E5208E /* Helpers */ = {
-			isa = PBXGroup;
-			children = (
-				C9401CEB2631EFF900E5208E /* Atomic.swift */,
-			);
-			path = Helpers;
-			sourceTree = "<group>";
-		};
-		C9628A7F2636FEEB009101EC /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				C9628A802636FEEB009101EC /* NetworkExtension.framework */,
-			);
-			name = Frameworks;
+			path = "WunderLINQ-GoProUITests";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		C9401CD12631EF9B00E5208E /* WunderLINQ-GoPro */ = {
+		7E17C2B629560E0900CF2E96 /* WunderLINQ-GoPro */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C9401CE12631EF9F00E5208E /* Build configuration list for PBXNativeTarget "WunderLINQ-GoPro" */;
+			buildConfigurationList = 7E17C2E129560E0B00CF2E96 /* Build configuration list for PBXNativeTarget "WunderLINQ-GoPro" */;
 			buildPhases = (
-				C9401CCE2631EF9B00E5208E /* Sources */,
-				C9401CCF2631EF9B00E5208E /* Frameworks */,
-				C9401CD02631EF9B00E5208E /* Resources */,
+				7E17C2B329560E0900CF2E96 /* Sources */,
+				7E17C2B429560E0900CF2E96 /* Frameworks */,
+				7E17C2B529560E0900CF2E96 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = "WunderLINQ-GoPro";
-			productName = Sample;
-			productReference = C9401CD22631EF9B00E5208E /* WunderLINQ-GoPro.app */;
+			productName = "WunderLINQ-GoPro";
+			productReference = 7E17C2B729560E0900CF2E96 /* WunderLINQ-GoPro.app */;
 			productType = "com.apple.product-type.application";
+		};
+		7E17C2CC29560E0B00CF2E96 /* WunderLINQ-GoProTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7E17C2E429560E0B00CF2E96 /* Build configuration list for PBXNativeTarget "WunderLINQ-GoProTests" */;
+			buildPhases = (
+				7E17C2C929560E0B00CF2E96 /* Sources */,
+				7E17C2CA29560E0B00CF2E96 /* Frameworks */,
+				7E17C2CB29560E0B00CF2E96 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				7E17C2CF29560E0B00CF2E96 /* PBXTargetDependency */,
+			);
+			name = "WunderLINQ-GoProTests";
+			productName = "WunderLINQ-GoProTests";
+			productReference = 7E17C2CD29560E0B00CF2E96 /* WunderLINQ-GoProTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		7E17C2D629560E0B00CF2E96 /* WunderLINQ-GoProUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7E17C2E729560E0B00CF2E96 /* Build configuration list for PBXNativeTarget "WunderLINQ-GoProUITests" */;
+			buildPhases = (
+				7E17C2D329560E0B00CF2E96 /* Sources */,
+				7E17C2D429560E0B00CF2E96 /* Frameworks */,
+				7E17C2D529560E0B00CF2E96 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				7E17C2D929560E0B00CF2E96 /* PBXTargetDependency */,
+			);
+			name = "WunderLINQ-GoProUITests";
+			productName = "WunderLINQ-GoProUITests";
+			productReference = 7E17C2D729560E0B00CF2E96 /* WunderLINQ-GoProUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		C9401CCA2631EF9B00E5208E /* Project object */ = {
+		7E17C2AF29560E0900CF2E96 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1240;
-				LastUpgradeCheck = 1240;
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1420;
+				LastUpgradeCheck = 1420;
 				TargetAttributes = {
-					C9401CD12631EF9B00E5208E = {
-						CreatedOnToolsVersion = 12.4;
+					7E17C2B629560E0900CF2E96 = {
+						CreatedOnToolsVersion = 14.2;
+					};
+					7E17C2CC29560E0B00CF2E96 = {
+						CreatedOnToolsVersion = 14.2;
+						TestTargetID = 7E17C2B629560E0900CF2E96;
+					};
+					7E17C2D629560E0B00CF2E96 = {
+						CreatedOnToolsVersion = 14.2;
+						TestTargetID = 7E17C2B629560E0900CF2E96;
 					};
 				};
 			};
-			buildConfigurationList = C9401CCD2631EF9B00E5208E /* Build configuration list for PBXProject "WunderLINQ-GoPro" */;
-			compatibilityVersion = "Xcode 9.3";
+			buildConfigurationList = 7E17C2B229560E0900CF2E96 /* Build configuration list for PBXProject "WunderLINQ-GoPro" */;
+			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				Base,
 			);
-			mainGroup = C9401CC92631EF9B00E5208E;
-			productRefGroup = C9401CD32631EF9B00E5208E /* Products */;
+			mainGroup = 7E17C2AE29560E0900CF2E96;
+			productRefGroup = 7E17C2B829560E0900CF2E96 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				C9401CD12631EF9B00E5208E /* WunderLINQ-GoPro */,
+				7E17C2B629560E0900CF2E96 /* WunderLINQ-GoPro */,
+				7E17C2CC29560E0B00CF2E96 /* WunderLINQ-GoProTests */,
+				7E17C2D629560E0B00CF2E96 /* WunderLINQ-GoProUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		C9401CD02631EF9B00E5208E /* Resources */ = {
+		7E17C2B529560E0900CF2E96 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C9401CDD2631EF9F00E5208E /* Preview Assets.xcassets in Resources */,
-				C9401CDA2631EF9F00E5208E /* Assets.xcassets in Resources */,
+				7E17C2C729560E0B00CF2E96 /* LaunchScreen.storyboard in Resources */,
+				7E17C2C429560E0B00CF2E96 /* Assets.xcassets in Resources */,
+				7E17C2C229560E0900CF2E96 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7E17C2CB29560E0B00CF2E96 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7E17C2D529560E0B00CF2E96 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		C9401CCE2631EF9B00E5208E /* Sources */ = {
+		7E17C2B329560E0900CF2E96 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C9401CD82631EF9B00E5208E /* CameraSelectionView.swift in Sources */,
-				C9401D0B2632015600E5208E /* Peripheral+Camera.swift in Sources */,
-				C9401CF22631FBFD00E5208E /* CameraView.swift in Sources */,
-				C9401CE62631EFC300E5208E /* CentralManager.swift in Sources */,
-				7E17C2A729550C0600CF2E96 /* WunderLINQGoProApp.swift in Sources */,
-				C9401CE92631EFE200E5208E /* Peripheral.swift in Sources */,
-				C9401CEC2631EFF900E5208E /* Atomic.swift in Sources */,
-				7E17C2AA2955153400CF2E96 /* KeyController.swift in Sources */,
-				C9401D04263200C400E5208E /* CameraError.swift in Sources */,
+				7E046BA9295616C30061A5F4 /* Peripheral.swift in Sources */,
+				7E17C2BF29560E0900CF2E96 /* CameraListController.swift in Sources */,
+				7E046BAA295616C30061A5F4 /* Peripheral+Camera.swift in Sources */,
+				7E17C2BB29560E0900CF2E96 /* AppDelegate.swift in Sources */,
+				7E046BAD295616C60061A5F4 /* Atomic.swift in Sources */,
+				7E17C2BD29560E0900CF2E96 /* SceneDelegate.swift in Sources */,
+				7E046BA32956160D0061A5F4 /* CameraError.swift in Sources */,
+				7E046BAB295616C30061A5F4 /* CentralManager.swift in Sources */,
+				7E046BAF295629A90061A5F4 /* CameraViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7E17C2C929560E0B00CF2E96 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7E17C2D229560E0B00CF2E96 /* WunderLINQ_GoProTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7E17C2D329560E0B00CF2E96 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7E17C2DC29560E0B00CF2E96 /* WunderLINQ_GoProUITests.swift in Sources */,
+				7E17C2DE29560E0B00CF2E96 /* WunderLINQ_GoProUITestsLaunchTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		7E17C2CF29560E0B00CF2E96 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7E17C2B629560E0900CF2E96 /* WunderLINQ-GoPro */;
+			targetProxy = 7E17C2CE29560E0B00CF2E96 /* PBXContainerItemProxy */;
+		};
+		7E17C2D929560E0B00CF2E96 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7E17C2B629560E0900CF2E96 /* WunderLINQ-GoPro */;
+			targetProxy = 7E17C2D829560E0B00CF2E96 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		7E17C2C029560E0900CF2E96 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7E17C2C129560E0900CF2E96 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		7E17C2C529560E0B00CF2E96 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7E17C2C629560E0B00CF2E96 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
 /* Begin XCBuildConfiguration section */
-		C9401CDF2631EF9F00E5208E /* Debug */ = {
+		7E17C2DF29560E0B00CF2E96 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_ENABLE_OBJC_WEAK = YES;
@@ -271,7 +390,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -281,14 +400,13 @@
 			};
 			name = Debug;
 		};
-		C9401CE02631EF9F00E5208E /* Release */ = {
+		7E17C2E029560E0B00CF2E96 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_ENABLE_OBJC_WEAK = YES;
@@ -326,7 +444,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -336,74 +454,178 @@
 			};
 			name = Release;
 		};
-		C9401CE22631EF9F00E5208E /* Debug */ = {
+		7E17C2E229560E0B00CF2E96 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = "WunderLINQ-GoPro/WunderLINQ-GoPro.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_ASSET_PATHS = "WunderLINQ-GoPro/Preview\\ Content";
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 3J48UMN5W2;
-				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "WunderLINQ-GoPro/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.blackboxembedded.WunderLINQ-GoPro";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
-		C9401CE32631EF9F00E5208E /* Release */ = {
+		7E17C2E329560E0B00CF2E96 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = "WunderLINQ-GoPro/WunderLINQ-GoPro.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_ASSET_PATHS = "WunderLINQ-GoPro/Preview\\ Content";
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 3J48UMN5W2;
-				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "WunderLINQ-GoPro/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.blackboxembedded.WunderLINQ-GoPro";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		7E17C2E529560E0B00CF2E96 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 3J48UMN5W2;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.blackboxembedded.WunderLINQ-GoProTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WunderLINQ-GoPro.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/WunderLINQ-GoPro";
+			};
+			name = Debug;
+		};
+		7E17C2E629560E0B00CF2E96 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 3J48UMN5W2;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.blackboxembedded.WunderLINQ-GoProTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WunderLINQ-GoPro.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/WunderLINQ-GoPro";
+			};
+			name = Release;
+		};
+		7E17C2E829560E0B00CF2E96 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 3J48UMN5W2;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.blackboxembedded.WunderLINQ-GoProUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "WunderLINQ-GoPro";
+			};
+			name = Debug;
+		};
+		7E17C2E929560E0B00CF2E96 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 3J48UMN5W2;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.blackboxembedded.WunderLINQ-GoProUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "WunderLINQ-GoPro";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		C9401CCD2631EF9B00E5208E /* Build configuration list for PBXProject "WunderLINQ-GoPro" */ = {
+		7E17C2B229560E0900CF2E96 /* Build configuration list for PBXProject "WunderLINQ-GoPro" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				C9401CDF2631EF9F00E5208E /* Debug */,
-				C9401CE02631EF9F00E5208E /* Release */,
+				7E17C2DF29560E0B00CF2E96 /* Debug */,
+				7E17C2E029560E0B00CF2E96 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C9401CE12631EF9F00E5208E /* Build configuration list for PBXNativeTarget "WunderLINQ-GoPro" */ = {
+		7E17C2E129560E0B00CF2E96 /* Build configuration list for PBXNativeTarget "WunderLINQ-GoPro" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				C9401CE22631EF9F00E5208E /* Debug */,
-				C9401CE32631EF9F00E5208E /* Release */,
+				7E17C2E229560E0B00CF2E96 /* Debug */,
+				7E17C2E329560E0B00CF2E96 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7E17C2E429560E0B00CF2E96 /* Build configuration list for PBXNativeTarget "WunderLINQ-GoProTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7E17C2E529560E0B00CF2E96 /* Debug */,
+				7E17C2E629560E0B00CF2E96 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7E17C2E729560E0B00CF2E96 /* Build configuration list for PBXNativeTarget "WunderLINQ-GoProUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7E17C2E829560E0B00CF2E96 /* Debug */,
+				7E17C2E929560E0B00CF2E96 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = C9401CCA2631EF9B00E5208E /* Project object */;
+	rootObject = 7E17C2AF29560E0900CF2E96 /* Project object */;
 }

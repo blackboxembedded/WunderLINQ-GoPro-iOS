@@ -18,6 +18,7 @@ import CoreBluetooth
 
 /// A simple wrapper around CBPeripheral to handle CoreBluetooth Peripheral related tasks
 final class Peripheral: NSObject {
+    private let notificationCenter = NotificationCenter.default
     var identifier: String { return cbPeripheral.identifier.uuidString }
     var name: String = ""
 
@@ -181,6 +182,7 @@ extension Peripheral {
             case .success(let service):
                 if let characteristic = self.characteristic(serviceUUID: service.uuid, UUID: characteristicUUID) {
                     completion?(.success(characteristic))
+                    //self.notificationCenter.post(name: Notification.Name("StatusUpdate"), object: nil)
                     return
                 }
                 self.discoveredCharacteristicCallbacks.append { error in
@@ -190,6 +192,7 @@ extension Peripheral {
                     }
 
                     completion?(.success(characteristic))
+                    //self.notificationCenter.post(name: Notification.Name("StatusUpdate"), object: nil)
                 }
 
                 self.cbPeripheral.discoverCharacteristics([characteristicUUID], for: service)

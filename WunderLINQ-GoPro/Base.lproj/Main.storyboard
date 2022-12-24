@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="lzU-RV-5Xf">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Camera List Controller-->
+        <scene sceneID="d5R-dc-pig">
+            <objects>
+                <tableViewController id="lzU-RV-5Xf" customClass="CameraListController" customModule="WunderLINQ_GoPro" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="4QJ-Tq-vRc">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CameraListViewCell" id="V1O-Gb-yyi">
+                                <rect key="frame" x="0.0" y="50" width="393" height="32.333332061767578"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="V1O-Gb-yyi" id="FTc-qt-oay">
+                                    <rect key="frame" x="0.0" y="0.0" width="393" height="32.333332061767578"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4aD-K6-ZX5">
+                                            <rect key="frame" x="0.0" y="16" width="305" height="0.33333333333333215"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="chevron.right" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="hZC-vE-TvD">
+                                            <rect key="frame" x="317" y="2" width="56" height="65"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="56" id="Ihn-Tz-19S"/>
+                                            </constraints>
+                                        </imageView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="hZC-vE-TvD" firstAttribute="leading" secondItem="4aD-K6-ZX5" secondAttribute="trailing" constant="16" id="4Zn-3o-7Mk"/>
+                                        <constraint firstItem="hZC-vE-TvD" firstAttribute="top" secondItem="FTc-qt-oay" secondAttribute="top" id="83l-Gj-fTh"/>
+                                        <constraint firstAttribute="trailing" secondItem="hZC-vE-TvD" secondAttribute="trailing" constant="16" id="CNH-2F-4J1"/>
+                                        <constraint firstItem="4aD-K6-ZX5" firstAttribute="leading" secondItem="FTc-qt-oay" secondAttribute="leading" id="LpB-gg-VT6"/>
+                                        <constraint firstAttribute="bottom" secondItem="hZC-vE-TvD" secondAttribute="bottom" id="Q3N-cY-MZq"/>
+                                        <constraint firstItem="4aD-K6-ZX5" firstAttribute="top" secondItem="FTc-qt-oay" secondAttribute="top" constant="16" id="Xz2-AI-rNd"/>
+                                        <constraint firstAttribute="bottom" secondItem="4aD-K6-ZX5" secondAttribute="bottom" constant="16" id="b9g-Ln-L4N"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="lzU-RV-5Xf" id="1yP-9L-9Hl"/>
+                            <outlet property="delegate" destination="lzU-RV-5Xf" id="ReL-hf-xys"/>
+                        </connections>
+                    </tableView>
+                    <connections>
+                        <outlet property="cameraListTableView" destination="4QJ-Tq-vRc" id="rHy-1I-bfx"/>
+                        <outlet property="tableView" destination="4QJ-Tq-vRc" id="xdV-rK-Qip"/>
+                        <segue destination="cAf-BU-IIZ" kind="show" identifier="cameraListToCameraView" id="VRz-tg-pu2"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QQ0-7R-Ebx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1054.1984732824426" y="-283.0985915492958"/>
+        </scene>
+        <!--Camera View Controller-->
+        <scene sceneID="6O3-hS-hIO">
+            <objects>
+                <viewController id="cAf-BU-IIZ" customClass="CameraViewController" customModule="WunderLINQ_GoPro" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="jR5-jn-RFI">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="783"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ghZ-tg-nuG">
+                                <rect key="frame" x="0.0" y="59" width="393" height="34.333333333333343"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="record.circle" catalog="system"/>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="zYe-cx-3HM"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="ghZ-tg-nuG" firstAttribute="leading" secondItem="zYe-cx-3HM" secondAttribute="leading" id="JlC-QT-q5i"/>
+                            <constraint firstItem="zYe-cx-3HM" firstAttribute="trailing" secondItem="ghZ-tg-nuG" secondAttribute="trailing" id="TAo-28-JJ2"/>
+                            <constraint firstItem="ghZ-tg-nuG" firstAttribute="top" secondItem="zYe-cx-3HM" secondAttribute="top" id="x5L-Et-AEg"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="ToC-qp-tHL"/>
+                    <connections>
+                        <outlet property="recordButton" destination="ghZ-tg-nuG" id="zan-Zn-i0i"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fCP-VC-eJM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-22" y="-283"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="chevron.right" catalog="system" width="97" height="128"/>
+        <image name="record.circle" catalog="system" width="128" height="123"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

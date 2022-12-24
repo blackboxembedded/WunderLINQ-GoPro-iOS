@@ -18,6 +18,8 @@ import CoreBluetooth
 
 /// A simple wrapper around CBCentralManager to handle CoreBluetooth Central related tasks
 final class CentralManager: NSObject, ObservableObject {
+    private let notificationCenter = NotificationCenter.default
+
     @Published var peripherals: [Peripheral] = []
 
     private var manager: CBCentralManager!
@@ -78,6 +80,7 @@ extension CentralManager : CBCentralManagerDelegate {
         if peripherals.filter({$0.identifier == peripheral.identifier}).first == nil {
             DispatchQueue.main.async { [weak self] in
                 self?.peripherals.append(peripheral)
+                self!.notificationCenter.post(name: Notification.Name("GoProFound"), object: nil)
             }
         }
     }
