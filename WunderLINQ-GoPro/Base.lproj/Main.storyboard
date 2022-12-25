@@ -2,7 +2,9 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="lzU-RV-5Xf">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -72,31 +74,50 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="783"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="camera" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="16v-Dj-91C">
+                                <rect key="frame" x="0.0" y="1" width="393" height="197.66666666666666"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="200" id="nVB-Yw-Q71"/>
+                                </constraints>
+                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ghZ-tg-nuG">
-                                <rect key="frame" x="0.0" y="59" width="393" height="34.333333333333343"/>
+                                <rect key="frame" x="0.0" y="717" width="393" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="F5Q-Fc-0g2"/>
+                                </constraints>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" image="record.circle" catalog="system"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Record">
+                                    <imageReference key="image" image="record.circle" catalog="system" symbolScale="large"/>
+                                </buttonConfiguration>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="zYe-cx-3HM"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="ghZ-tg-nuG" firstAttribute="leading" secondItem="zYe-cx-3HM" secondAttribute="leading" id="JlC-QT-q5i"/>
-                            <constraint firstItem="zYe-cx-3HM" firstAttribute="trailing" secondItem="ghZ-tg-nuG" secondAttribute="trailing" id="TAo-28-JJ2"/>
-                            <constraint firstItem="ghZ-tg-nuG" firstAttribute="top" secondItem="zYe-cx-3HM" secondAttribute="top" id="x5L-Et-AEg"/>
+                            <constraint firstItem="16v-Dj-91C" firstAttribute="top" secondItem="jR5-jn-RFI" secondAttribute="top" id="9Z9-Pn-Tcy"/>
+                            <constraint firstItem="zYe-cx-3HM" firstAttribute="bottom" secondItem="ghZ-tg-nuG" secondAttribute="bottom" constant="16" id="Abz-gn-fg7"/>
+                            <constraint firstItem="16v-Dj-91C" firstAttribute="trailing" secondItem="zYe-cx-3HM" secondAttribute="trailing" id="Duj-5p-eYd"/>
+                            <constraint firstItem="16v-Dj-91C" firstAttribute="leading" secondItem="zYe-cx-3HM" secondAttribute="leading" id="FOJ-Fv-KFU"/>
+                            <constraint firstItem="ghZ-tg-nuG" firstAttribute="trailing" secondItem="zYe-cx-3HM" secondAttribute="trailing" id="N2o-eQ-H36"/>
+                            <constraint firstAttribute="trailing" secondItem="16v-Dj-91C" secondAttribute="trailing" id="YWe-jQ-uUi"/>
+                            <constraint firstItem="ghZ-tg-nuG" firstAttribute="leading" secondItem="zYe-cx-3HM" secondAttribute="leading" id="oki-5f-b2s"/>
+                            <constraint firstItem="16v-Dj-91C" firstAttribute="top" secondItem="jR5-jn-RFI" secondAttribute="top" id="wnV-a8-0e9"/>
+                            <constraint firstItem="16v-Dj-91C" firstAttribute="leading" secondItem="jR5-jn-RFI" secondAttribute="leading" id="xw5-za-XIe"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="ToC-qp-tHL"/>
                     <connections>
+                        <outlet property="modeImageView" destination="16v-Dj-91C" id="aHY-aa-ltC"/>
                         <outlet property="recordButton" destination="ghZ-tg-nuG" id="zan-Zn-i0i"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fCP-VC-eJM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-22" y="-283"/>
+            <point key="canvasLocation" x="-22.137404580152669" y="-283.0985915492958"/>
         </scene>
     </scenes>
     <resources>
+        <image name="camera" catalog="system" width="128" height="93"/>
         <image name="chevron.right" catalog="system" width="97" height="128"/>
         <image name="record.circle" catalog="system" width="128" height="123"/>
         <systemColor name="systemBackgroundColor">

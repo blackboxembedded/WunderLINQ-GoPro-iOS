@@ -114,6 +114,7 @@
 				7E17C2BA29560E0900CF2E96 /* AppDelegate.swift */,
 				7E17C2BC29560E0900CF2E96 /* SceneDelegate.swift */,
 				7E046BA22956160D0061A5F4 /* CameraError.swift */,
+				7E046BAE295629A90061A5F4 /* CameraViewController.swift */,
 				7E17C2BE29560E0900CF2E96 /* CameraListController.swift */,
 				7E046BA6295616C20061A5F4 /* CentralManager.swift */,
 				7E046BA7295616C20061A5F4 /* Peripheral.swift */,
@@ -123,7 +124,6 @@
 				7E17C2C329560E0B00CF2E96 /* Assets.xcassets */,
 				7E17C2C529560E0B00CF2E96 /* LaunchScreen.storyboard */,
 				7E17C2C829560E0B00CF2E96 /* Info.plist */,
-				7E046BAE295629A90061A5F4 /* CameraViewController.swift */,
 			);
 			path = "WunderLINQ-GoPro";
 			sourceTree = "<group>";
@@ -469,6 +469,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -497,6 +498,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
