@@ -48,7 +48,7 @@ extension Peripheral {
                 completion?(error)
             }
         }
-
+        
         registerObserver(serviceUUID: serviceUUID, characteristicUUID: commandResponseUUID) { data in
 
             var messageHexString = ""
@@ -279,14 +279,13 @@ extension Peripheral {
             }
             NSLog(messageHexString)
             
-            // The response to the command to enable Wi-Fi is expected to be 3 bytes
-            if data.count < 5 {
+            // The response to the command is expected to be 12 bytes
+            if data.count < 12 {
                 finishWithResult(.failure(CameraError.invalidResponse))
                 return
             }
+            
             finishWithResult(.success(CameraStatus(busy: (data[5] == 0x01), mode: data[11])))
-            // The third byte represents the camera response. If the byte is 0x00 then the request was successful
-            //finishWithResult(.failure(data[2] == 0x00 ? nil : CameraError.responseError))
 
         } completion: { [weak self] error in
             // Check that we successfully enable the notification for the response before writing to the characteristic
