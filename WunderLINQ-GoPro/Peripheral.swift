@@ -144,6 +144,7 @@ extension Peripheral {
                     self.notificationChangeCallbacks.append { error in completion?(nil) }
                     self.characteristicObservers[characteristicUUID] = observer
                     self.cbPeripheral.setNotifyValue(true, for: characteristic)
+                    NSLog("IN registerObserver() switch - .success - finish")
                 case .failure(let error):
                     completion?(error)
                 }

@@ -25,6 +25,12 @@ class CameraViewController: UIViewController {
     
     var cameraStatus: CameraStatus?
     
+    @IBAction func didTapImageView(_ sender: UITapGestureRecognizer) {
+        print("didTapImageView(): ", sender)
+        getCameraStatus()
+        //upKey()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -47,12 +53,19 @@ class CameraViewController: UIViewController {
         
         recordButton.addTarget(self, action: #selector(toggleShutter), for: .touchUpInside)
         print(peripheral?.name ?? "?")
-        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
         getCameraStatus()
+        super.viewWillAppear(animated)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        if let peripheral = peripheral {
+            NSLog("Disconnecting to \(peripheral.name)..")
+            peripheral.disconnect()
+        }
     }
     
     @objc func handleGesture(gesture: UISwipeGestureRecognizer) -> Void {
@@ -73,23 +86,30 @@ class CameraViewController: UIViewController {
     @objc func toggleShutter() {
         NSLog("toggleShutter()")
         if (cameraStatus!.busy){
-            peripheral?.setShutterOff { error in
+            NSLog("toggleShutter() - Off")
+            peripheral?.setCommand(command: Data([0x01, 0x01, 0x00])) { error in
                 if error != nil {
                     print("\(error!)")
+                    self.getCameraStatus()
                     return
+                } else {
+                    NSLog("toggleShutter() busy toggle")
+                    self.cameraStatus?.busy.toggle()
                 }
             }
-            cameraStatus?.busy = false
         } else {
-            peripheral?.setShutterOn { error in
+            NSLog("toggleShutter() - On")
+            peripheral?.setCommand(command: Data([0x01, 0x01, 0x01])) { error in
                 if error != nil {
                     print("\(error!)")
+                    self.getCameraStatus()
                     return
+                } else {
+                    NSLog("toggleShutter() busy toggle")
+                    self.cameraStatus?.busy.toggle()
                 }
             }
-            cameraStatus?.busy = true
         }
-        
     }
     
     @objc func getCameraStatus() {
@@ -146,18 +166,23 @@ class CameraViewController: UIViewController {
             getCameraStatus()
         } else if (cameraStatus?.mode == 0xEA) {
             cameraStatus?.mode = 0xE8
-            peripheral?.setGroup(mode: cameraStatus!.mode) { error in
+            peripheral?.setCommand(command: Data([0x3E,0x02,0x03,cameraStatus!.mode])) { error in
                 if error != nil {
                     print("\(error!)")
                     return
+                } else {
+                    self.getCameraStatus()
                 }
             }
         } else {
-            cameraStatus?.mode = cameraStatus!.mode + 1
-            peripheral?.setGroup(mode: cameraStatus!.mode) { error in
+            let mode = cameraStatus?.mode
+            cameraStatus?.mode = mode! + 1
+            peripheral?.setCommand(command: Data([0x3E,0x02,0x03,cameraStatus!.mode])) { error in
                 if error != nil {
                     print("\(error!)")
                     return
+                } else {
+                    self.getCameraStatus()
                 }
             }
         }
@@ -167,18 +192,23 @@ class CameraViewController: UIViewController {
             getCameraStatus()
         } else if (cameraStatus?.mode == 0xE8) {
             cameraStatus?.mode = 0xEA
-            peripheral?.setGroup(mode: cameraStatus!.mode) { error in
+            peripheral?.setCommand(command: Data([0x3E,0x02,0x03,cameraStatus!.mode])) { error in
                 if error != nil {
                     print("\(error!)")
                     return
+                } else {
+                    self.getCameraStatus()
                 }
             }
         } else {
-            cameraStatus?.mode = cameraStatus!.mode - 1
-            peripheral?.setGroup(mode: cameraStatus!.mode) { error in
+            let mode = cameraStatus?.mode
+            cameraStatus?.mode = mode! - 1
+            peripheral?.setCommand(command: Data([0x3E,0x02,0x03,cameraStatus!.mode])) { error in
                 if error != nil {
                     print("\(error!)")
                     return
+                } else {
+                    self.getCameraStatus()
                 }
             }
         }

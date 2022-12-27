@@ -28,6 +28,7 @@ class CameraListController: UITableViewController {
     var itemRow = 0
 
     override func viewDidLoad() {
+        NSLog("IN viewDidLoad()")
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
@@ -35,13 +36,21 @@ class CameraListController: UITableViewController {
             NSLog("Disconnecting to \(peripheral.name)..")
             peripheral.disconnect()
         }
+        //NSLog("Scanning for GoPro cameras..")
+        //scanner.start(withServices: [CBUUID(string: "FEA6")])
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        NSLog("IN viewWillAppear()")
+        super.viewWillAppear(animated)
+        
         NSLog("Scanning for GoPro cameras..")
         scanner.start(withServices: [CBUUID(string: "FEA6")])
-        
         notificationCenter.addObserver(self, selector:#selector(updateDisplay), name: NSNotification.Name("GoProFound"), object: nil)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
+        NSLog("IN viewWillDisappear()")
         super.viewWillDisappear(animated)
         notificationCenter.removeObserver(self)
         scanner.stop()
@@ -54,10 +63,12 @@ class CameraListController: UITableViewController {
     }
 
     // Create a standard header that includes the returned text.
+    /*
     override func tableView(_ tableView: UITableView, titleForHeaderInSection
                                 section: Int) -> String? {
        return "Discovered Cameras"
     }
+     */
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
