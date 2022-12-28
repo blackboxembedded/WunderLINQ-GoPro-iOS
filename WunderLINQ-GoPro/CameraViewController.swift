@@ -82,6 +82,39 @@ class CameraViewController: UIViewController {
         }
     }
     
+    @objc func updateDisplay() {
+        switch cameraStatus!.mode {
+        case 0xE8:
+            //Video
+            print("Video")
+            self.modeImageView.image = UIImage(systemName:"video")
+            if (cameraStatus!.busy) {
+                self.recordButton.setTitle("Stop Recording", for: .normal)
+            } else {
+                self.recordButton.setTitle("Start Recording", for: .normal)
+            }
+        case 0xE9:
+            //Photo
+            print("Photo")
+            self.modeImageView.image = UIImage(systemName:"camera")
+            self.recordButton.setTitle("Take Photo", for: .normal)
+        case 0xEA:
+            //Timelapse
+            print("Timelapse")
+            self.modeImageView.image = UIImage(systemName:"timelapse")
+            if (cameraStatus!.busy) {
+                self.recordButton.setTitle("Stop Recording", for: .normal)
+            } else {
+                self.recordButton.setTitle("Start Recording", for: .normal)
+            }
+        default:
+            //Unknown
+            print("Unknown")
+            self.modeImageView.image = nil
+        }
+        
+    }
+    
     @objc func toggleShutter() {
         NSLog("toggleShutter()")
         if (cameraStatus!.busy){
@@ -138,24 +171,7 @@ class CameraViewController: UIViewController {
             case .success(let status):
                 print("Mode Value: \(status)")
                 self.cameraStatus = status
-                switch status.mode {
-                case 0xE8:
-                    //Video
-                    print("Video")
-                    self.modeImageView.image = UIImage(systemName:"video")
-                case 0xE9:
-                    //Photo
-                    print("Photo")
-                    self.modeImageView.image = UIImage(systemName:"camera")
-                case 0xEA:
-                    //Timelapse
-                    print("Timelapse")
-                    self.modeImageView.image = UIImage(systemName:"timelapse")
-                default:
-                    //Unknown
-                    print("Unknown")
-                    self.modeImageView.image = nil
-                }
+                self.updateDisplay()
             case .failure(let error):
                 print("\(error)")
             }

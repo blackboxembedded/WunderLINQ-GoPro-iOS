@@ -29,7 +29,6 @@ struct CameraStatus {
     var wifiEnabled: Bool
 }
 
-
 extension Peripheral {
     
     /// Send Command to camera
