@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		24BCA3FE3E018E4D528F923C /* Pods_WunderLINQ_GoPro.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52F7A1ED21FD8B325EED5CAE /* Pods_WunderLINQ_GoPro.framework */; };
+		36CDE1DE3DC1116FAD3168DC /* Pods_WunderLINQ_GoPro_WunderLINQ_GoProUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9A5BD28343A06ED422EA936 /* Pods_WunderLINQ_GoPro_WunderLINQ_GoProUITests.framework */; };
+		6406D171DEAC0B2E4102D48D /* Pods_WunderLINQ_GoProTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9CB9F5984D7ACDA34942B96 /* Pods_WunderLINQ_GoProTests.framework */; };
 		7E046BA32956160D0061A5F4 /* CameraError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E046BA22956160D0061A5F4 /* CameraError.swift */; };
 		7E046BA9295616C30061A5F4 /* Peripheral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E046BA7295616C20061A5F4 /* Peripheral.swift */; };
 		7E046BAA295616C30061A5F4 /* Peripheral+Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E046BA8295616C30061A5F4 /* Peripheral+Camera.swift */; };
@@ -43,6 +46,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		10F14A8046D4AB83D15BA1F6 /* Pods-WunderLINQ-GoPro-WunderLINQ-GoProUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WunderLINQ-GoPro-WunderLINQ-GoProUITests.debug.xcconfig"; path = "Target Support Files/Pods-WunderLINQ-GoPro-WunderLINQ-GoProUITests/Pods-WunderLINQ-GoPro-WunderLINQ-GoProUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		1EDC28A47BBA9F03EC163D77 /* Pods-WunderLINQ-GoPro.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WunderLINQ-GoPro.debug.xcconfig"; path = "Target Support Files/Pods-WunderLINQ-GoPro/Pods-WunderLINQ-GoPro.debug.xcconfig"; sourceTree = "<group>"; };
+		2EA1DEF85953FF563BF008F2 /* Pods-WunderLINQ-GoProTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WunderLINQ-GoProTests.release.xcconfig"; path = "Target Support Files/Pods-WunderLINQ-GoProTests/Pods-WunderLINQ-GoProTests.release.xcconfig"; sourceTree = "<group>"; };
+		52F7A1ED21FD8B325EED5CAE /* Pods_WunderLINQ_GoPro.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WunderLINQ_GoPro.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5DC4BD9FB2607A0D8A8CF053 /* Pods-WunderLINQ-GoPro.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WunderLINQ-GoPro.release.xcconfig"; path = "Target Support Files/Pods-WunderLINQ-GoPro/Pods-WunderLINQ-GoPro.release.xcconfig"; sourceTree = "<group>"; };
+		7DE5F1938781499DB9E5921A /* Pods-WunderLINQ-GoProTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WunderLINQ-GoProTests.debug.xcconfig"; path = "Target Support Files/Pods-WunderLINQ-GoProTests/Pods-WunderLINQ-GoProTests.debug.xcconfig"; sourceTree = "<group>"; };
 		7E046BA22956160D0061A5F4 /* CameraError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraError.swift; sourceTree = "<group>"; };
 		7E046BA6295616C20061A5F4 /* CentralManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CentralManager.swift; sourceTree = "<group>"; };
 		7E046BA7295616C20061A5F4 /* Peripheral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Peripheral.swift; sourceTree = "<group>"; };
@@ -64,6 +73,9 @@
 		7E17C2D729560E0B00CF2E96 /* WunderLINQ-GoProUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "WunderLINQ-GoProUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E17C2DB29560E0B00CF2E96 /* WunderLINQ_GoProUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WunderLINQ_GoProUITests.swift; sourceTree = "<group>"; };
 		7E17C2DD29560E0B00CF2E96 /* WunderLINQ_GoProUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WunderLINQ_GoProUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		8E7EB88A26FD224C0E2890F5 /* Pods-WunderLINQ-GoPro-WunderLINQ-GoProUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WunderLINQ-GoPro-WunderLINQ-GoProUITests.release.xcconfig"; path = "Target Support Files/Pods-WunderLINQ-GoPro-WunderLINQ-GoProUITests/Pods-WunderLINQ-GoPro-WunderLINQ-GoProUITests.release.xcconfig"; sourceTree = "<group>"; };
+		B9CB9F5984D7ACDA34942B96 /* Pods_WunderLINQ_GoProTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WunderLINQ_GoProTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F9A5BD28343A06ED422EA936 /* Pods_WunderLINQ_GoPro_WunderLINQ_GoProUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WunderLINQ_GoPro_WunderLINQ_GoProUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +83,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				24BCA3FE3E018E4D528F923C /* Pods_WunderLINQ_GoPro.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,6 +91,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6406D171DEAC0B2E4102D48D /* Pods_WunderLINQ_GoProTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -85,12 +99,27 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				36CDE1DE3DC1116FAD3168DC /* Pods_WunderLINQ_GoPro_WunderLINQ_GoProUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6CB83AFD58C2E7BA76465852 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				1EDC28A47BBA9F03EC163D77 /* Pods-WunderLINQ-GoPro.debug.xcconfig */,
+				5DC4BD9FB2607A0D8A8CF053 /* Pods-WunderLINQ-GoPro.release.xcconfig */,
+				10F14A8046D4AB83D15BA1F6 /* Pods-WunderLINQ-GoPro-WunderLINQ-GoProUITests.debug.xcconfig */,
+				8E7EB88A26FD224C0E2890F5 /* Pods-WunderLINQ-GoPro-WunderLINQ-GoProUITests.release.xcconfig */,
+				7DE5F1938781499DB9E5921A /* Pods-WunderLINQ-GoProTests.debug.xcconfig */,
+				2EA1DEF85953FF563BF008F2 /* Pods-WunderLINQ-GoProTests.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		7E17C2AE29560E0900CF2E96 = {
 			isa = PBXGroup;
 			children = (
@@ -98,6 +127,8 @@
 				7E17C2D029560E0B00CF2E96 /* WunderLINQ-GoProTests */,
 				7E17C2DA29560E0B00CF2E96 /* WunderLINQ-GoProUITests */,
 				7E17C2B829560E0900CF2E96 /* Products */,
+				6CB83AFD58C2E7BA76465852 /* Pods */,
+				EB519B64F0E020E3311FF77F /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -150,6 +181,16 @@
 			path = "WunderLINQ-GoProUITests";
 			sourceTree = "<group>";
 		};
+		EB519B64F0E020E3311FF77F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				52F7A1ED21FD8B325EED5CAE /* Pods_WunderLINQ_GoPro.framework */,
+				F9A5BD28343A06ED422EA936 /* Pods_WunderLINQ_GoPro_WunderLINQ_GoProUITests.framework */,
+				B9CB9F5984D7ACDA34942B96 /* Pods_WunderLINQ_GoProTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -157,9 +198,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7E17C2E129560E0B00CF2E96 /* Build configuration list for PBXNativeTarget "WunderLINQ-GoPro" */;
 			buildPhases = (
+				DD1D0F76426FE60B5128B678 /* [CP] Check Pods Manifest.lock */,
 				7E17C2B329560E0900CF2E96 /* Sources */,
 				7E17C2B429560E0900CF2E96 /* Frameworks */,
 				7E17C2B529560E0900CF2E96 /* Resources */,
+				1142D9CF3A69F4E33A0BACC7 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -174,6 +217,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7E17C2E429560E0B00CF2E96 /* Build configuration list for PBXNativeTarget "WunderLINQ-GoProTests" */;
 			buildPhases = (
+				18CFFC635EF14555496E15C3 /* [CP] Check Pods Manifest.lock */,
 				7E17C2C929560E0B00CF2E96 /* Sources */,
 				7E17C2CA29560E0B00CF2E96 /* Frameworks */,
 				7E17C2CB29560E0B00CF2E96 /* Resources */,
@@ -192,9 +236,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7E17C2E729560E0B00CF2E96 /* Build configuration list for PBXNativeTarget "WunderLINQ-GoProUITests" */;
 			buildPhases = (
+				66DAA4AF95F7163A5C9D87F4 /* [CP] Check Pods Manifest.lock */,
 				7E17C2D329560E0B00CF2E96 /* Sources */,
 				7E17C2D429560E0B00CF2E96 /* Frameworks */,
 				7E17C2D529560E0B00CF2E96 /* Resources */,
+				B83846D360B1777FCE65C501 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -275,6 +321,109 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1142D9CF3A69F4E33A0BACC7 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-WunderLINQ-GoPro/Pods-WunderLINQ-GoPro-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-WunderLINQ-GoPro/Pods-WunderLINQ-GoPro-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-WunderLINQ-GoPro/Pods-WunderLINQ-GoPro-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		18CFFC635EF14555496E15C3 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-WunderLINQ-GoProTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		66DAA4AF95F7163A5C9D87F4 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-WunderLINQ-GoPro-WunderLINQ-GoProUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B83846D360B1777FCE65C501 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-WunderLINQ-GoPro-WunderLINQ-GoProUITests/Pods-WunderLINQ-GoPro-WunderLINQ-GoProUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-WunderLINQ-GoPro-WunderLINQ-GoProUITests/Pods-WunderLINQ-GoPro-WunderLINQ-GoProUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-WunderLINQ-GoPro-WunderLINQ-GoProUITests/Pods-WunderLINQ-GoPro-WunderLINQ-GoProUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DD1D0F76426FE60B5128B678 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-WunderLINQ-GoPro-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		7E17C2B329560E0900CF2E96 /* Sources */ = {
@@ -462,6 +611,7 @@
 		};
 		7E17C2E229560E0B00CF2E96 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1EDC28A47BBA9F03EC163D77 /* Pods-WunderLINQ-GoPro.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -492,6 +642,7 @@
 		};
 		7E17C2E329560E0B00CF2E96 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5DC4BD9FB2607A0D8A8CF053 /* Pods-WunderLINQ-GoPro.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -522,6 +673,7 @@
 		};
 		7E17C2E529560E0B00CF2E96 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7DE5F1938781499DB9E5921A /* Pods-WunderLINQ-GoProTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -542,6 +694,7 @@
 		};
 		7E17C2E629560E0B00CF2E96 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2EA1DEF85953FF563BF008F2 /* Pods-WunderLINQ-GoProTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -562,6 +715,7 @@
 		};
 		7E17C2E829560E0B00CF2E96 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 10F14A8046D4AB83D15BA1F6 /* Pods-WunderLINQ-GoPro-WunderLINQ-GoProUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -580,6 +734,7 @@
 		};
 		7E17C2E929560E0B00CF2E96 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8E7EB88A26FD224C0E2890F5 /* Pods-WunderLINQ-GoPro-WunderLINQ-GoProUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;

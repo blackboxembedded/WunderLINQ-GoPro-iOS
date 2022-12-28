@@ -16,7 +16,7 @@
 		</dict>
 	</array>
 	<key>NSBluetoothAlwaysUsageDescription</key>
-        <string>This will allow "$(PRODUCT_NAME)" to find and connect to GoPro Cameras</string>
+	<string>This will allow &quot;$(PRODUCT_NAME)&quot; to find and connect to GoPro Cameras</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
@@ -35,6 +35,11 @@
 				</dict>
 			</array>
 		</dict>
+	</dict>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
 	</dict>
 </dict>
 </plist>

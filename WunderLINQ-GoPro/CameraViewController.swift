@@ -16,15 +16,17 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 import Foundation
 import UIKit
 import NetworkExtension
+import MJPEGStreamLib
 
 class CameraViewController: UIViewController {
     
     @IBOutlet weak var recordButton: UIButton!
     @IBOutlet weak var modeImageView: UIImageView!
+    @IBOutlet weak var cameraPreview: UIImageView!
     
     var peripheral: Peripheral?
-    
     var cameraStatus: CameraStatus?
+    var stream: MJPEGStreamLib!
     
     @IBAction func didTapImageView(_ sender: UITapGestureRecognizer) {
         enableWifi()
@@ -267,6 +269,45 @@ class CameraViewController: UIViewController {
         } else {
             UIApplication.shared.openURL(url)
         }
+    }
+    
+    private func enablePreview() {
+        //http://10.5.5.9:8080/gopro/camera/stream/start
+        //http://10.5.5.9:8080/gopro/camera/stream/stop
+    }
+    
+    private func startPreview() {
+        let child = SpinnerViewController()
+        // add the spinner view controller
+        addChild(child)
+        child.view.frame = view.frame
+        
+        let url = URL(string: "http://10.5.5.9:8080/gopro/camera/stream/start")!
+        let task = URLSession.shared.dataTask(with: url) {(data, response, error) in
+            guard let data = data else { return }
+            print(String(data: data, encoding: .utf8)!)
+        }
+        task.resume()
+        
+        // Set the ImageView to the stream object
+        stream = MJPEGStreamLib(imageView: cameraPreview)
+        // Start Loading Indicator
+        stream.didStartLoading = { [unowned self] in
+            view.addSubview(child.view)
+            child.didMove(toParent: self)
+        }
+        // Stop Loading Indicator
+        stream.didFinishLoading = { [unowned self] in
+            // then remove the spinner view controller
+            child.willMove(toParent: nil)
+            child.view.removeFromSuperview()
+            child.removeFromParent()
+        }
+
+        // Your stream url should be here !
+        let streamURL = URL(string: "udp://@0.0.0.0:8554")
+        stream.contentURL = streamURL
+        stream.play() // Play the stream
     }
     
     private func joinWiFi(with SSID: String, password: String) {
