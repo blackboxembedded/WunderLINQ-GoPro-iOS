@@ -36,8 +36,6 @@ class CameraListController: UITableViewController {
             NSLog("Disconnecting to \(peripheral.name)..")
             peripheral.disconnect()
         }
-        //NSLog("Scanning for GoPro cameras..")
-        //scanner.start(withServices: [CBUUID(string: "FEA6")])
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -71,13 +69,10 @@ class CameraListController: UITableViewController {
      */
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        
         return scanner.peripherals.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-     
         let cell = tableView.dequeueReusableCell(withIdentifier: "CameraListViewCell", for: indexPath)
         
         let labelText = scanner.peripherals[indexPath.row].name
@@ -99,7 +94,6 @@ class CameraListController: UITableViewController {
     }
     
     override var keyCommands: [UIKeyCommand]? {
-        
         let commands = [
             UIKeyCommand(input: "\u{d}", modifierFlags:[], action: #selector(enterKey)),
             UIKeyCommand(input: UIKeyCommand.inputUpArrow, modifierFlags:[], action: #selector(upKey)),
@@ -115,8 +109,19 @@ class CameraListController: UITableViewController {
     }
     
     @objc func enterKey() {
+        let child = SpinnerViewController()
+        // add the spinner view controller
+        addChild(child)
+        child.view.frame = view.frame
+        view.addSubview(child.view)
+        child.didMove(toParent: self)
+        
         let selected: Peripheral = scanner.peripherals[itemRow]
         selected.connect { error in
+            // then remove the spinner view controller
+            child.willMove(toParent: nil)
+            child.view.removeFromSuperview()
+            child.removeFromParent()
             if error != nil {
                 NSLog("Error connecting to \(selected.name)")
                 return
@@ -132,6 +137,7 @@ class CameraListController: UITableViewController {
             self.performSegue(withIdentifier: "cameraListToCameraView", sender: self)
         }
     }
+    
     @objc func upKey() {
         if (itemRow == 0){
             let nextRow = scanner.peripherals.count - 1
@@ -157,6 +163,7 @@ class CameraListController: UITableViewController {
             itemRow = nextRow
         }
     }
+    
     @objc func downKey() {
         if (itemRow == (scanner.peripherals.count - 1)){
             let nextRow = 0
@@ -182,12 +189,11 @@ class CameraListController: UITableViewController {
             itemRow = nextRow
         }
     }
-    @objc func leftKey() {
-        
-    }
-    @objc func rightKey() {
-        
-    }
+    
+    @objc func leftKey() {}
+    
+    @objc func rightKey() {}
+    
     @objc func escapeKey() {
         guard let url = URL(string: "wunderlinq://") else {
             return

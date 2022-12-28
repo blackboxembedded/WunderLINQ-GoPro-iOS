@@ -15,6 +15,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import Foundation
 import UIKit
+import NetworkExtension
 
 class CameraViewController: UIViewController {
     
@@ -26,9 +27,7 @@ class CameraViewController: UIViewController {
     var cameraStatus: CameraStatus?
     
     @IBAction func didTapImageView(_ sender: UITapGestureRecognizer) {
-        print("didTapImageView(): ", sender)
-        getCameraStatus()
-        //upKey()
+        enableWifi()
     }
     
     override func viewDidLoad() {
@@ -112,6 +111,27 @@ class CameraViewController: UIViewController {
         }
     }
     
+    @objc func enableWifi() {
+        NSLog("Enabling WiFi...")
+        peripheral?.setCommand(command: Data([0x17, 0x01, 0x01])) { error in
+            if error != nil {
+                print("\(error!)")
+                return
+            }
+            
+            NSLog("Requesting WiFi settings...")
+            self.peripheral?.requestWiFiSettings { result in
+                switch result {
+                case .success(let wifiSettings):
+                    print("WiFi settings: \(wifiSettings)")
+                    self.joinWiFi(with: wifiSettings.SSID, password: wifiSettings.password)
+                case .failure(let error):
+                    print("\(error)")
+                }
+            }
+        }
+    }
+    
     @objc func getCameraStatus() {
         peripheral?.requestCameraStatus() { result in
             switch result {
@@ -161,6 +181,7 @@ class CameraViewController: UIViewController {
     @objc func enterKey() {
         toggleShutter()
     }
+    
     @objc func upKey() {
         if (cameraStatus?.mode == 0x00) {
             getCameraStatus()
@@ -187,6 +208,7 @@ class CameraViewController: UIViewController {
             }
         }
     }
+    
     @objc func downKey() {
         if (cameraStatus?.mode == 0x00) {
             getCameraStatus()
@@ -213,12 +235,13 @@ class CameraViewController: UIViewController {
             }
         }
     }
+    
     @objc func leftKey() {
         self.dismiss(animated: true, completion: nil)
     }
-    @objc func rightKey() {
-        
-    }
+    
+    @objc func rightKey() {}
+    
     @objc func escapeKey() {
         guard let url = URL(string: "wunderlinq://") else {
             return
@@ -227,6 +250,17 @@ class CameraViewController: UIViewController {
             UIApplication.shared.open(url, options: [:], completionHandler: nil)
         } else {
             UIApplication.shared.openURL(url)
+        }
+    }
+    
+    private func joinWiFi(with SSID: String, password: String) {
+        NSLog("Joining WiFi \(SSID)...")
+        let configuration = NEHotspotConfiguration(ssid: SSID, passphrase: password, isWEP: false)
+        NEHotspotConfigurationManager.shared.removeConfiguration(forSSID: SSID)
+        configuration.joinOnce = false
+        NEHotspotConfigurationManager.shared.apply(configuration) { error in
+            guard let error = error else { NSLog("Joining WiFi succeeded"); return }
+            NSLog("Joining WiFi failed: \(error)")
         }
     }
 }

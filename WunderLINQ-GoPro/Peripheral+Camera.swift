@@ -26,6 +26,7 @@ struct WiFiSettings {
 struct CameraStatus {
     var busy: Bool
     var mode: UInt8
+    var wifiEnabled: Bool
 }
 
 
@@ -77,47 +78,6 @@ extension Peripheral {
             if error != nil { finishWithError(error); return }
             self?.write(data: data, serviceUUID: serviceUUID, characteristicUUID: commandUUID) { error in
                 NSLog("setCommand() - write")
-                if error != nil { finishWithError(error) }
-            }
-        }
-    }
-    
-    /// Turns ON camera's Wi-Fi
-    /// - Parameter completion: The completion handler with an optional error that is invoked once the request completes.
-    ///
-    /// Discussion:
-    /// In order to turn on the camera's Wi-Fi, the first thing to do is to enable the notification on the
-    /// characteristic GP-0073 and then write 03:17:01:01 to the characteristic GP-0072
-
-    func enableWiFi(_ completion: ((Error?) -> Void)?) {
-
-        let serviceUUID = CBUUID(string: "FEA6")
-        let commandUUID = CBUUID(string: "B5F90072-AA8D-11E3-9046-0002A5D5C51B")
-        let commandResponseUUID = CBUUID(string: "B5F90073-AA8D-11E3-9046-0002A5D5C51B")
-        let data = Data([0x03, 0x17, 0x01, 0x01])
-
-        let finishWithError: (Error?) -> Void = { error in
-            // make sure to dispatch the result on the main thread
-            DispatchQueue.main.async {
-                completion?(error)
-            }
-        }
-
-        registerObserver(serviceUUID: serviceUUID, characteristicUUID: commandResponseUUID) { data in
-
-            // The response to the command to enable Wi-Fi is expected to be 3 bytes
-            if data.count != 3 {
-                finishWithError(CameraError.invalidResponse)
-                return
-            }
-
-            // The third byte represents the camera response. If the byte is 0x00 then the request was successful
-            finishWithError(data[2] == 0x00 ? nil : CameraError.responseError)
-
-        } completion: { [weak self] error in
-            // Check that we successfully enable the notification for the response before writing to the characteristic
-            if error != nil { finishWithError(error); return }
-            self?.write(data: data, serviceUUID: serviceUUID, characteristicUUID: commandUUID) { error in
                 if error != nil { finishWithError(error) }
             }
         }
@@ -185,7 +145,7 @@ extension Peripheral {
         let serviceUUID = CBUUID(string: "FEA6")
         let commandUUID = CBUUID(string: "B5F90076-AA8D-11E3-9046-0002A5D5C51B")
         let commandResponseUUID = CBUUID(string: "B5F90077-AA8D-11E3-9046-0002A5D5C51B")
-        let data = Data([0x03,0x13,0x08,0x60])
+        let data = Data([0x04,0x13,0x08,0x17,0x60])
 
         let finishWithResult: (Result<CameraStatus, Error>) -> Void = { result in
             // make sure to dispatch the result on the main thread
@@ -203,12 +163,12 @@ extension Peripheral {
             NSLog(messageHexString)
             
             // The response to the command is expected to be 12 bytes
-            if data.count < 12 {
+            if data.count < 15 {
                 finishWithResult(.failure(CameraError.invalidResponse))
                 return
             }
             
-            finishWithResult(.success(CameraStatus(busy: (data[5] == 0x01), mode: data[11])))
+            finishWithResult(.success(CameraStatus(busy: (data[5] == 0x01), mode: data[14], wifiEnabled: (data[8] == 0x01))))
 
         } completion: { [weak self] error in
             // Check that we successfully enable the notification for the response before writing to the characteristic
