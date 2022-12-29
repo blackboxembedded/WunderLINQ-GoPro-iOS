@@ -132,19 +132,14 @@ extension Peripheral {
     ///   - observer: A callback invoked when an update of the characteristic value is received
     ///   - completion: The completion handler with an optional error invoked once the request completes.
     func registerObserver(serviceUUID: CBUUID, characteristicUUID: CBUUID, observer: @escaping ((Data) -> ()), completion:((Error?) -> Void)?) {
-        NSLog("IN registerObserver()")
         queue.async { [unowned self] in
             discoverCharacteristic(serviceUUID: serviceUUID, characteristicUUID: characteristicUUID) { result in
-                NSLog("IN registerObserver() switch")
                 switch result {
                 case .success(let characteristic):
-                    NSLog("IN registerObserver() switch - .success")
                     if characteristic.isNotifying { completion?(nil); return }
-                    NSLog("IN registerObserver() switch - .success - passed isNotifying")
                     self.notificationChangeCallbacks.append { error in completion?(nil) }
                     self.characteristicObservers[characteristicUUID] = observer
                     self.cbPeripheral.setNotifyValue(true, for: characteristic)
-                    NSLog("IN registerObserver() switch - .success - finish")
                 case .failure(let error):
                     completion?(error)
                 }
@@ -157,7 +152,6 @@ extension Peripheral {
 
 extension Peripheral {
     private func discoverService(UUID: CBUUID, completion:((Result<CBService, Error>) -> Void)?) {
-        NSLog("IN discoverService()")
         if let service = service(with: UUID) {
             completion?(.success(service))
             return
@@ -183,7 +177,6 @@ extension Peripheral {
 
 extension Peripheral {
     private func discoverCharacteristic(serviceUUID: CBUUID, characteristicUUID: CBUUID, completion:((Result<CBCharacteristic, Error>) -> Void)?) {
-        NSLog("IN discoverCharacteristic()")
         discoverService(UUID: serviceUUID) { [unowned self] result in
             switch result {
             case .success(let service):
@@ -245,7 +238,6 @@ extension Peripheral: CBPeripheralDelegate {
 
     func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
         queue.async { [weak self] in
-            NSLog("IN didUpdateValueFor()")
             if characteristic.isNotifying {
                 if let data = characteristic.value {
                     let observer = self?.characteristicObservers[characteristic.uuid]

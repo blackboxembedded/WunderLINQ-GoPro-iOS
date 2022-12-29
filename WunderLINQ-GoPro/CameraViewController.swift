@@ -16,17 +16,20 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 import Foundation
 import UIKit
 import NetworkExtension
-import MJPEGStreamLib
 
 class CameraViewController: UIViewController {
     
+    @IBOutlet weak var cameraPreview: UIView!
     @IBOutlet weak var recordButton: UIButton!
     @IBOutlet weak var modeImageView: UIImageView!
-    @IBOutlet weak var cameraPreview: UIImageView!
     
     var peripheral: Peripheral?
     var cameraStatus: CameraStatus?
-    var stream: MJPEGStreamLib!
+   
+    let child = SpinnerViewController()
+    var mediaPlayer = VLCMediaPlayer()
+    
+    let streamURL = URL(string: "udp://@0.0.0.0:8554")
     
     @IBAction func didTapImageView(_ sender: UITapGestureRecognizer) {
         enableWifi()
@@ -57,8 +60,8 @@ class CameraViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        getCameraStatus()
         super.viewWillAppear(animated)
+        getCameraStatus()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -84,7 +87,7 @@ class CameraViewController: UIViewController {
         }
     }
     
-    @objc func updateDisplay() {
+    func updateDisplay() {
         switch cameraStatus!.mode {
         case 0xE8:
             //Video
@@ -127,9 +130,9 @@ class CameraViewController: UIViewController {
                     self.getCameraStatus()
                     return
                 } else {
-                    NSLog("toggleShutter() busy toggle")
                     self.cameraStatus?.busy.toggle()
                 }
+                return
             }
         } else {
             NSLog("toggleShutter() - On")
@@ -139,16 +142,16 @@ class CameraViewController: UIViewController {
                     self.getCameraStatus()
                     return
                 } else {
-                    NSLog("toggleShutter() busy toggle")
                     self.cameraStatus?.busy.toggle()
                 }
+                return
             }
         }
     }
     
-    @objc func enableWifi() {
+    func enableWifi() {
         NSLog("Enabling WiFi...")
-        peripheral?.setCommand(command: Data([0x17, 0x01, 0x01])) { error in
+        self.peripheral?.setCommand(command: Data([0x17, 0x01, 0x01])) { error in
             if error != nil {
                 print("\(error!)")
                 return
@@ -164,10 +167,11 @@ class CameraViewController: UIViewController {
                     print("\(error)")
                 }
             }
+            return
         }
     }
     
-    @objc func getCameraStatus() {
+    func getCameraStatus() {
         peripheral?.requestCameraStatus() { result in
             switch result {
             case .success(let status):
@@ -271,43 +275,33 @@ class CameraViewController: UIViewController {
         }
     }
     
-    private func enablePreview() {
-        //http://10.5.5.9:8080/gopro/camera/stream/start
-        //http://10.5.5.9:8080/gopro/camera/stream/stop
-    }
-    
     private func startPreview() {
+        mediaPlayer.delegate = self
+        mediaPlayer.drawable = cameraPreview
+        mediaPlayer.media = VLCMedia(url: streamURL!)
+        
         let child = SpinnerViewController()
         // add the spinner view controller
         addChild(child)
         child.view.frame = view.frame
         
-        let url = URL(string: "http://10.5.5.9:8080/gopro/camera/stream/start")!
-        let task = URLSession.shared.dataTask(with: url) {(data, response, error) in
-            guard let data = data else { return }
-            print(String(data: data, encoding: .utf8)!)
-        }
-        task.resume()
-        
-        // Set the ImageView to the stream object
-        stream = MJPEGStreamLib(imageView: cameraPreview)
-        // Start Loading Indicator
-        stream.didStartLoading = { [unowned self] in
-            view.addSubview(child.view)
-            child.didMove(toParent: self)
-        }
-        // Stop Loading Indicator
-        stream.didFinishLoading = { [unowned self] in
-            // then remove the spinner view controller
-            child.willMove(toParent: nil)
-            child.view.removeFromSuperview()
-            child.removeFromParent()
-        }
+        let config = URLSessionConfiguration.ephemeral
+        config.waitsForConnectivity = true
+        let sesh = URLSession(configuration: config)
+        let startURL = URL(string: "http://10.5.5.9:8080/gopro/camera/stream/start")!
+        var request = URLRequest(url: startURL)
+        sesh.dataTask(with: request) { (data, response, error) in
+            print("HTTP: Response:\(response)")
 
-        // Your stream url should be here !
-        let streamURL = URL(string: "udp://@0.0.0.0:8554")
-        stream.contentURL = streamURL
-        stream.play() // Play the stream
+            var messageHexString = ""
+            for i in 0 ..< data!.count {
+                messageHexString += String(format: "%02X", data![i])
+            }
+            NSLog(messageHexString)
+            self.getCameraStatus()
+            self.mediaPlayer.play()
+        }.resume()
+        print("after request")
     }
     
     private func joinWiFi(with SSID: String, password: String) {
@@ -316,8 +310,23 @@ class CameraViewController: UIViewController {
         NEHotspotConfigurationManager.shared.removeConfiguration(forSSID: SSID)
         configuration.joinOnce = false
         NEHotspotConfigurationManager.shared.apply(configuration) { error in
-            guard let error = error else { NSLog("Joining WiFi succeeded"); return }
+            guard let error = error else { NSLog("Joining WiFi succeeded"); self.startPreview(); return }
             NSLog("Joining WiFi failed: \(error)")
+        }
+    }
+}
+
+extension CameraViewController: VLCMediaPlayerDelegate {
+
+    func mediaPlayerStateChanged(_ aNotification: Notification) {
+        print("State: \(mediaPlayer.state)")
+
+        child.willMove(toParent: nil)
+        child.view.removeFromSuperview()
+        child.removeFromParent()
+        
+        if mediaPlayer.state == .stopped {
+            
         }
     }
 }

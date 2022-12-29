@@ -5,7 +5,7 @@ target 'WunderLINQ-GoPro' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
   # Pods for WunderLINQ-GoPro
-  pod "MJPEGStreamLib"
+  pod 'MobileVLCKit'
 
   target 'WunderLINQ-GoProTests' do
     inherit! :search_paths

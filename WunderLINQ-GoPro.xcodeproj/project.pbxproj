@@ -75,6 +75,7 @@
 		7E17C2DD29560E0B00CF2E96 /* WunderLINQ_GoProUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WunderLINQ_GoProUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		8E7EB88A26FD224C0E2890F5 /* Pods-WunderLINQ-GoPro-WunderLINQ-GoProUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WunderLINQ-GoPro-WunderLINQ-GoProUITests.release.xcconfig"; path = "Target Support Files/Pods-WunderLINQ-GoPro-WunderLINQ-GoProUITests/Pods-WunderLINQ-GoPro-WunderLINQ-GoProUITests.release.xcconfig"; sourceTree = "<group>"; };
 		B9CB9F5984D7ACDA34942B96 /* Pods_WunderLINQ_GoProTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WunderLINQ_GoProTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D896D32B295D1A1800B7FEAD /* WunderLINQ-GoPro-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WunderLINQ-GoPro-Bridging-Header.h"; sourceTree = "<group>"; };
 		F9A5BD28343A06ED422EA936 /* Pods_WunderLINQ_GoPro_WunderLINQ_GoProUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WunderLINQ_GoPro_WunderLINQ_GoProUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -116,7 +117,6 @@
 				7DE5F1938781499DB9E5921A /* Pods-WunderLINQ-GoProTests.debug.xcconfig */,
 				2EA1DEF85953FF563BF008F2 /* Pods-WunderLINQ-GoProTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -160,6 +160,7 @@
 				7E17C2C329560E0B00CF2E96 /* Assets.xcassets */,
 				7E17C2C529560E0B00CF2E96 /* LaunchScreen.storyboard */,
 				7E17C2C829560E0B00CF2E96 /* Info.plist */,
+				D896D32B295D1A1800B7FEAD /* WunderLINQ-GoPro-Bridging-Header.h */,
 			);
 			path = "WunderLINQ-GoPro";
 			sourceTree = "<group>";
@@ -264,6 +265,7 @@
 				TargetAttributes = {
 					7E17C2B629560E0900CF2E96 = {
 						CreatedOnToolsVersion = 14.2;
+						LastSwiftMigration = 1420;
 					};
 					7E17C2CC29560E0B00CF2E96 = {
 						CreatedOnToolsVersion = 14.2;
@@ -615,6 +617,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "WunderLINQ-GoPro/WunderLINQ-GoPro.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -635,6 +638,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.blackboxembedded.WunderLINQ-GoPro";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "WunderLINQ-GoPro/WunderLINQ-GoPro-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -646,6 +651,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "WunderLINQ-GoPro/WunderLINQ-GoPro.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -666,6 +672,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.blackboxembedded.WunderLINQ-GoPro";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "WunderLINQ-GoPro/WunderLINQ-GoPro-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
