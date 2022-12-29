@@ -32,7 +32,8 @@ class CameraViewController: UIViewController {
     let streamURL = URL(string: "udp://@0.0.0.0:8554")
     
     @IBAction func didTapImageView(_ sender: UITapGestureRecognizer) {
-        enableWifi()
+        //enableWifi()
+        getCameraStatus()
     }
     
     override func viewDidLoad() {
@@ -56,6 +57,7 @@ class CameraViewController: UIViewController {
         self.view.addGestureRecognizer(swipeRight)
         
         recordButton.addTarget(self, action: #selector(toggleShutter), for: .touchUpInside)
+        recordButton.isHidden = true
         print(peripheral?.name ?? "?")
     }
     
@@ -70,6 +72,21 @@ class CameraViewController: UIViewController {
             NSLog("Disconnecting to \(peripheral.name)..")
             peripheral.disconnect()
         }
+    }
+    
+    override var keyCommands: [UIKeyCommand]? {
+        let commands = [
+            UIKeyCommand(input: "\u{d}", modifierFlags:[], action: #selector(enterKey)),
+            UIKeyCommand(input: UIKeyCommand.inputUpArrow, modifierFlags:[], action: #selector(upKey)),
+            UIKeyCommand(input: UIKeyCommand.inputDownArrow, modifierFlags:[], action: #selector(downKey)),
+            UIKeyCommand(input: UIKeyCommand.inputLeftArrow, modifierFlags:[], action: #selector(leftKey)),
+            UIKeyCommand(input: UIKeyCommand.inputRightArrow, modifierFlags:[], action: #selector(leftKey)),
+            UIKeyCommand(input: UIKeyCommand.inputEscape, modifierFlags:[], action: #selector(escapeKey))
+        ]
+        if #available(iOS 15, *) {
+            commands.forEach { $0.wantsPriorityOverSystemBehavior = true }
+        }
+        return commands
     }
     
     @objc func handleGesture(gesture: UISwipeGestureRecognizer) -> Void {
@@ -88,86 +105,92 @@ class CameraViewController: UIViewController {
     }
     
     func updateDisplay() {
+        print("updateDisplay()")
         switch cameraStatus!.mode {
         case 0xE8:
             //Video
-            print("Video")
             self.modeImageView.image = UIImage(systemName:"video")
             if (cameraStatus!.busy) {
                 self.recordButton.setTitle("Stop Recording", for: .normal)
             } else {
                 self.recordButton.setTitle("Start Recording", for: .normal)
             }
+            self.recordButton.isHidden = false
         case 0xE9:
             //Photo
-            print("Photo")
             self.modeImageView.image = UIImage(systemName:"camera")
             self.recordButton.setTitle("Take Photo", for: .normal)
+            self.recordButton.isHidden = false
         case 0xEA:
             //Timelapse
-            print("Timelapse")
             self.modeImageView.image = UIImage(systemName:"timelapse")
             if (cameraStatus!.busy) {
                 self.recordButton.setTitle("Stop Recording", for: .normal)
             } else {
                 self.recordButton.setTitle("Start Recording", for: .normal)
             }
+            self.recordButton.isHidden = false
         default:
             //Unknown
-            print("Unknown")
             self.modeImageView.image = nil
+            self.recordButton.setTitle("Status Unknown", for: .normal)
+            self.recordButton.isHidden = false
         }
-        
     }
     
     @objc func toggleShutter() {
         NSLog("toggleShutter()")
         if (cameraStatus!.busy){
             NSLog("toggleShutter() - Off")
-            peripheral?.setCommand(command: Data([0x01, 0x01, 0x00])) { error in
-                if error != nil {
-                    print("\(error!)")
-                    self.getCameraStatus()
-                    return
-                } else {
-                    self.cameraStatus?.busy.toggle()
-                }
-                return
-            }
+            sendCameraCommand(command: Data([0x01, 0x01, 0x00]))
         } else {
             NSLog("toggleShutter() - On")
-            peripheral?.setCommand(command: Data([0x01, 0x01, 0x01])) { error in
-                if error != nil {
-                    print("\(error!)")
-                    self.getCameraStatus()
-                    return
-                } else {
-                    self.cameraStatus?.busy.toggle()
-                }
-                return
-            }
+            sendCameraCommand(command: Data([0x01, 0x01, 0x01]))
         }
     }
     
     func enableWifi() {
         NSLog("Enabling WiFi...")
-        self.peripheral?.setCommand(command: Data([0x17, 0x01, 0x01])) { error in
-            if error != nil {
-                print("\(error!)")
-                return
-            }
-            
-            NSLog("Requesting WiFi settings...")
-            self.peripheral?.requestWiFiSettings { result in
-                switch result {
-                case .success(let wifiSettings):
-                    print("WiFi settings: \(wifiSettings)")
-                    self.joinWiFi(with: wifiSettings.SSID, password: wifiSettings.password)
-                case .failure(let error):
-                    print("\(error)")
+        if (!(cameraStatus?.wifiEnabled ?? false)){
+            sendCameraCommand(command: Data([0x17, 0x01, 0x01]))
+        } else {
+            requestWiFiSettngs()
+        }
+    }
+    
+    func sendCameraCommand(command: Data){
+        self.peripheral?.setCommand(command: command) { result in
+            switch result {
+            case .success(let response):
+                NSLog("Command Response: \(response)")
+                //Check command/response and do something
+                let commandResponse: CommandResponse = response
+                var messageHexString = ""
+                for i in 0 ..< commandResponse.command.count {
+                    messageHexString += String(format: "%02X", commandResponse.command[i])
                 }
+                NSLog("Command: \(messageHexString)")
+                if (commandResponse.response[0] == 0x01){
+                    //Shutter Command
+                    if (commandResponse.command[2] == 0x01){
+                        NSLog("Set cameraStatus!.busy = true")
+                        self.cameraStatus!.busy = true
+                    } else {
+                        NSLog("Set cameraStatus!.busy = false")
+                        self.cameraStatus!.busy = false
+                    }
+                } else if (commandResponse.response[0] == 0x17){
+                    if (commandResponse.response[2] == 0x00){
+                        //Enable WiFi Command
+                        self.requestWiFiSettngs()
+                    }
+                }
+                self.getCameraStatus()
+                //self.updateDisplay()
+            case .failure(let error):
+                NSLog("\(error)")
+                self.getCameraStatus()
             }
-            return
         }
     }
     
@@ -180,24 +203,22 @@ class CameraViewController: UIViewController {
                 self.updateDisplay()
             case .failure(let error):
                 print("\(error)")
+                self.getCameraStatus()
             }
         }
     }
     
- 
-    override var keyCommands: [UIKeyCommand]? {
-        let commands = [
-            UIKeyCommand(input: "\u{d}", modifierFlags:[], action: #selector(enterKey)),
-            UIKeyCommand(input: UIKeyCommand.inputUpArrow, modifierFlags:[], action: #selector(upKey)),
-            UIKeyCommand(input: UIKeyCommand.inputDownArrow, modifierFlags:[], action: #selector(downKey)),
-            UIKeyCommand(input: UIKeyCommand.inputLeftArrow, modifierFlags:[], action: #selector(leftKey)),
-            UIKeyCommand(input: UIKeyCommand.inputRightArrow, modifierFlags:[], action: #selector(leftKey)),
-            UIKeyCommand(input: UIKeyCommand.inputEscape, modifierFlags:[], action: #selector(escapeKey))
-        ]
-        if #available(iOS 15, *) {
-            commands.forEach { $0.wantsPriorityOverSystemBehavior = true }
+    func requestWiFiSettngs() {
+        NSLog("Requesting WiFi settings...")
+        self.peripheral?.requestWiFiSettings { result in
+            switch result {
+            case .success(let wifiSettings):
+                NSLog("WiFi settings: \(wifiSettings)")
+                self.joinWiFi(with: wifiSettings.SSID, password: wifiSettings.password)
+            case .failure(let error):
+                NSLog("\(error)")
+            }
         }
-        return commands
     }
     
     @objc func enterKey() {
@@ -209,25 +230,12 @@ class CameraViewController: UIViewController {
             getCameraStatus()
         } else if (cameraStatus?.mode == 0xEA) {
             cameraStatus?.mode = 0xE8
-            peripheral?.setCommand(command: Data([0x3E,0x02,0x03,cameraStatus!.mode])) { error in
-                if error != nil {
-                    print("\(error!)")
-                    return
-                } else {
-                    self.getCameraStatus()
-                }
-            }
         } else {
             let mode = cameraStatus?.mode
             cameraStatus?.mode = mode! + 1
-            peripheral?.setCommand(command: Data([0x3E,0x02,0x03,cameraStatus!.mode])) { error in
-                if error != nil {
-                    print("\(error!)")
-                    return
-                } else {
-                    self.getCameraStatus()
-                }
-            }
+        }
+        if((0xE8...0xEA).contains(cameraStatus!.mode)){
+            sendCameraCommand(command: Data([0x3E,0x02,0x03,cameraStatus!.mode]))
         }
     }
     
@@ -236,25 +244,12 @@ class CameraViewController: UIViewController {
             getCameraStatus()
         } else if (cameraStatus?.mode == 0xE8) {
             cameraStatus?.mode = 0xEA
-            peripheral?.setCommand(command: Data([0x3E,0x02,0x03,cameraStatus!.mode])) { error in
-                if error != nil {
-                    print("\(error!)")
-                    return
-                } else {
-                    self.getCameraStatus()
-                }
-            }
         } else {
             let mode = cameraStatus?.mode
             cameraStatus?.mode = mode! - 1
-            peripheral?.setCommand(command: Data([0x3E,0x02,0x03,cameraStatus!.mode])) { error in
-                if error != nil {
-                    print("\(error!)")
-                    return
-                } else {
-                    self.getCameraStatus()
-                }
-            }
+        }
+        if((0xE8...0xEA).contains(cameraStatus!.mode)){
+            sendCameraCommand(command: Data([0x3E,0x02,0x03,cameraStatus!.mode]))
         }
     }
     
@@ -275,6 +270,17 @@ class CameraViewController: UIViewController {
         }
     }
     
+    private func joinWiFi(with SSID: String, password: String) {
+        NSLog("Joining WiFi \(SSID)...")
+        let configuration = NEHotspotConfiguration(ssid: SSID, passphrase: password, isWEP: false)
+        NEHotspotConfigurationManager.shared.removeConfiguration(forSSID: SSID)
+        configuration.joinOnce = false
+        NEHotspotConfigurationManager.shared.apply(configuration) { error in
+            guard let error = error else { NSLog("Joining WiFi succeeded"); self.startPreview(); return }
+            NSLog("Joining WiFi failed: \(error)")
+        }
+    }
+    
     private func startPreview() {
         mediaPlayer.delegate = self
         mediaPlayer.drawable = cameraPreview
@@ -289,37 +295,19 @@ class CameraViewController: UIViewController {
         config.waitsForConnectivity = true
         let sesh = URLSession(configuration: config)
         let startURL = URL(string: "http://10.5.5.9:8080/gopro/camera/stream/start")!
-        var request = URLRequest(url: startURL)
+        let request = URLRequest(url: startURL)
         sesh.dataTask(with: request) { (data, response, error) in
-            print("HTTP: Response:\(response)")
-
-            var messageHexString = ""
-            for i in 0 ..< data!.count {
-                messageHexString += String(format: "%02X", data![i])
-            }
-            NSLog(messageHexString)
+            NSLog("HTTP: Response:\(response)")
             self.getCameraStatus()
             self.mediaPlayer.play()
         }.resume()
-        print("after request")
-    }
-    
-    private func joinWiFi(with SSID: String, password: String) {
-        NSLog("Joining WiFi \(SSID)...")
-        let configuration = NEHotspotConfiguration(ssid: SSID, passphrase: password, isWEP: false)
-        NEHotspotConfigurationManager.shared.removeConfiguration(forSSID: SSID)
-        configuration.joinOnce = false
-        NEHotspotConfigurationManager.shared.apply(configuration) { error in
-            guard let error = error else { NSLog("Joining WiFi succeeded"); self.startPreview(); return }
-            NSLog("Joining WiFi failed: \(error)")
-        }
     }
 }
 
 extension CameraViewController: VLCMediaPlayerDelegate {
 
     func mediaPlayerStateChanged(_ aNotification: Notification) {
-        print("State: \(mediaPlayer.state)")
+        NSLog("State: \(mediaPlayer.state)")
 
         child.willMove(toParent: nil)
         child.view.removeFromSuperview()

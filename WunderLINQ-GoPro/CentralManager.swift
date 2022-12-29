@@ -17,10 +17,10 @@ import Foundation
 import CoreBluetooth
 
 /// A simple wrapper around CBCentralManager to handle CoreBluetooth Central related tasks
-final class CentralManager: NSObject, ObservableObject {
+final class CentralManager: NSObject {
     private let notificationCenter = NotificationCenter.default
 
-    @Published var peripherals: [Peripheral] = []
+    var peripherals: [Peripheral] = []
 
     private var manager: CBCentralManager!
     private var isReady: Bool { get { return manager.state == .poweredOn } }

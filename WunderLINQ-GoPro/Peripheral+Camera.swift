@@ -31,13 +31,17 @@ struct CameraStatus {
     var previewAvailable: Bool
 }
 
+struct CommandResponse {
+    var command: Data
+    var response: Data
+}
+
 extension Peripheral {
     
     /// Send Command to camera
     /// - Parameter completion: The completion handler with an optional error that is invoked once the request completes.
     ///
-    func setCommand(command: Data, completion: ((Error?) -> Void)?) {
-
+    func setCommand(command: Data, completion: ((Result<CommandResponse, Error>) -> Void)?) {
         var messageHexString = ""
         for i in 0 ..< command.count {
             messageHexString += String(format: "%02X", command[i])
@@ -49,12 +53,13 @@ extension Peripheral {
         let commandResponseUUID = CBUUID(string: "B5F90073-AA8D-11E3-9046-0002A5D5C51B")
         let data = Data([UInt8(command.count)] + command)
 
-        let finishWithError: (Error?) -> Void = { error in
+        let finishWithResult: (Result<CommandResponse, Error>) -> Void = { result in
             // make sure to dispatch the result on the main thread
             DispatchQueue.main.async {
-                completion?(error)
+                completion?(result)
             }
         }
+        let test = command
         
         registerObserver(serviceUUID: serviceUUID, characteristicUUID: commandResponseUUID) { data in
 
@@ -66,18 +71,22 @@ extension Peripheral {
             
             // The response to a command is expected to be 3 bytes
             if data.count != 3 {
-                finishWithError(CameraError.invalidResponse)
+                finishWithResult(.failure(CameraError.invalidResponse))
                 return
             }
 
             // The third byte represents the camera response. If the byte is 0x00 then the request was successful
-            finishWithError(data[2] == 0x00 ? nil : CameraError.responseError)
-            return
+            if (data[2] != 0x00) {
+                finishWithResult(.failure(CameraError.responseError))
+                return
+            }
+            
+            finishWithResult(.success(CommandResponse(command:test, response:data)))
         } completion: { [weak self] error in
             // Check that we successfully enable the notification for the response before writing to the characteristic
-            if error != nil { finishWithError(error); return }
+            if error != nil { finishWithResult(.failure(error!)); return }
             self?.write(data: data, serviceUUID: serviceUUID, characteristicUUID: commandUUID) { error in
-                if error != nil { finishWithError(error) }
+                if error != nil { finishWithResult(.failure(error!)) }
             }
         }
     }
