@@ -25,6 +25,7 @@ class CameraViewController: UIViewController {
     
     var peripheral: Peripheral?
     var cameraStatus: CameraStatus?
+    var lastCommand: Data?
    
     let child = SpinnerViewController()
     var mediaPlayer = VLCMediaPlayer()
@@ -32,8 +33,7 @@ class CameraViewController: UIViewController {
     let streamURL = URL(string: "udp://@0.0.0.0:8554")
     
     @IBAction func didTapImageView(_ sender: UITapGestureRecognizer) {
-        //enableWifi()
-        getCameraStatus()
+        enableWifi()
     }
     
     override func viewDidLoad() {
@@ -151,14 +151,17 @@ class CameraViewController: UIViewController {
     
     func enableWifi() {
         NSLog("Enabling WiFi...")
+        sendCameraCommand(command: Data([0x17, 0x01, 0x01]))
+        /*
         if (!(cameraStatus?.wifiEnabled ?? false)){
             sendCameraCommand(command: Data([0x17, 0x01, 0x01]))
         } else {
             requestWiFiSettngs()
-        }
+        }*/
     }
     
     func sendCameraCommand(command: Data){
+        self.lastCommand = command
         self.peripheral?.setCommand(command: command) { result in
             switch result {
             case .success(let response):
@@ -170,23 +173,23 @@ class CameraViewController: UIViewController {
                     messageHexString += String(format: "%02X", commandResponse.command[i])
                 }
                 NSLog("Command: \(messageHexString)")
-                if (commandResponse.response[0] == 0x01){
+                if ((self.lastCommand![0] == 0x01) && (commandResponse.response[1] == 0x01)){
                     //Shutter Command
-                    if (commandResponse.command[2] == 0x01){
+                    if (self.lastCommand![2] == 0x01){
                         NSLog("Set cameraStatus!.busy = true")
                         self.cameraStatus!.busy = true
                     } else {
                         NSLog("Set cameraStatus!.busy = false")
                         self.cameraStatus!.busy = false
                     }
-                } else if (commandResponse.response[0] == 0x17){
+                } else if (commandResponse.response[1] == 0x17){
                     if (commandResponse.response[2] == 0x00){
                         //Enable WiFi Command
                         self.requestWiFiSettngs()
                     }
                 }
-                self.getCameraStatus()
-                //self.updateDisplay()
+                //self.getCameraStatus()
+                self.updateDisplay()
             case .failure(let error):
                 NSLog("\(error)")
                 self.getCameraStatus()
@@ -273,11 +276,18 @@ class CameraViewController: UIViewController {
     private func joinWiFi(with SSID: String, password: String) {
         NSLog("Joining WiFi \(SSID)...")
         let configuration = NEHotspotConfiguration(ssid: SSID, passphrase: password, isWEP: false)
-        NEHotspotConfigurationManager.shared.removeConfiguration(forSSID: SSID)
-        configuration.joinOnce = false
-        NEHotspotConfigurationManager.shared.apply(configuration) { error in
-            guard let error = error else { NSLog("Joining WiFi succeeded"); self.startPreview(); return }
-            NSLog("Joining WiFi failed: \(error)")
+        NEHotspotNetwork.fetchCurrent { network in
+              if network?.ssid == configuration.ssid {
+                  NSLog("Already connected to WiFi \(SSID)...")
+                  self.startPreview()
+              } else {
+                  NEHotspotConfigurationManager.shared.removeConfiguration(forSSID: SSID)
+                  configuration.joinOnce = false
+                  NEHotspotConfigurationManager.shared.apply(configuration) { error in
+                      guard let error = error else { NSLog("Joining WiFi succeeded"); self.startPreview(); return }
+                      NSLog("Joining WiFi failed: \(error)")
+                  }
+              }
         }
     }
     
@@ -302,6 +312,7 @@ class CameraViewController: UIViewController {
             self.mediaPlayer.play()
         }.resume()
     }
+
 }
 
 extension CameraViewController: VLCMediaPlayerDelegate {

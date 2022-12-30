@@ -27,7 +27,6 @@ struct CameraStatus {
     var busy: Bool
     var mode: UInt8
     var wifiEnabled: Bool
-    //var previewEnabled: Bool
     var previewAvailable: Bool
 }
 
@@ -59,7 +58,6 @@ extension Peripheral {
                 completion?(result)
             }
         }
-        let test = command
         
         registerObserver(serviceUUID: serviceUUID, characteristicUUID: commandResponseUUID) { data in
 
@@ -81,7 +79,7 @@ extension Peripheral {
                 return
             }
             
-            finishWithResult(.success(CommandResponse(command:test, response:data)))
+            finishWithResult(.success(CommandResponse(command:command, response:data)))
         } completion: { [weak self] error in
             // Check that we successfully enable the notification for the response before writing to the characteristic
             if error != nil { finishWithResult(.failure(error!)); return }
