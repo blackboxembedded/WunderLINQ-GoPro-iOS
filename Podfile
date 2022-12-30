@@ -6,6 +6,8 @@ target 'WunderLINQ-GoPro' do
   use_frameworks!
   # Pods for WunderLINQ-GoPro
   pod 'MobileVLCKit'
+  pod 'InAppSettingsKit'
+  pod 'ChromaColorPicker'
 
   target 'WunderLINQ-GoProTests' do
     inherit! :search_paths

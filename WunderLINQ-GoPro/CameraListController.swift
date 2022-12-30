@@ -15,6 +15,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import UIKit
 import CoreBluetooth
+import InAppSettingsKit
 
 class CameraListController: UITableViewController {
     
@@ -31,6 +32,19 @@ class CameraListController: UITableViewController {
         super.viewDidLoad()
             
         self.navigationItem.title = NSLocalizedString("cameralist_title", comment: "")
+        var menuBtn = UIButton()
+        menuBtn.setImage(UIImage(named: "Menu")?.withRenderingMode(.alwaysTemplate), for: .normal)
+        if #available(iOS 13.0, *) {
+            menuBtn.tintColor = UIColor(named: "imageTint")
+        }
+        menuBtn.addTarget(self, action: #selector(menuButton), for: .touchUpInside)
+        let menuButton = UIBarButtonItem(customView: menuBtn)
+        let menuButtonWidth = menuButton.customView?.widthAnchor.constraint(equalToConstant: 30)
+        menuButtonWidth?.isActive = true
+        let menuButtonHeight = menuButton.customView?.heightAnchor.constraint(equalToConstant: 30)
+        menuButtonHeight?.isActive = true
+        self.navigationItem.rightBarButtonItems = [menuButton]
+        
         if let peripheral = peripheral {
             NSLog("Disconnecting to \(peripheral.name)..")
             peripheral.disconnect()
@@ -94,6 +108,11 @@ class CameraListController: UITableViewController {
             commands.forEach { $0.wantsPriorityOverSystemBehavior = true }
         }
         return commands
+    }
+    
+    @objc func menuButton() {
+        let appSettingsViewController = IASKAppSettingsViewController()
+        self.navigationController!.pushViewController(appSettingsViewController, animated: true)
     }
     
     @objc func enterKey() {
