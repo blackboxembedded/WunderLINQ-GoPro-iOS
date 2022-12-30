@@ -50,9 +50,10 @@ class CameraViewController: UIViewController {
         swipeRight.direction = .right
         self.view.addGestureRecognizer(swipeRight)
         
+        self.navigationItem.title = peripheral?.name ?? "?"
+        
         recordButton.addTarget(self, action: #selector(toggleShutter), for: .touchUpInside)
         recordButton.isHidden = true
-        print(peripheral?.name ?? "?")
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -61,7 +62,6 @@ class CameraViewController: UIViewController {
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        NSLog("CameraView: viewWillDisappear()")
         super.viewWillDisappear(animated)
         if let peripheral = peripheral {
             NSLog("Disconnecting to \(peripheral.name)..")
@@ -114,29 +114,28 @@ class CameraViewController: UIViewController {
             //Video
             self.modeImageView.image = UIImage(systemName:"video")
             if (cameraStatus!.busy) {
-                self.recordButton.setTitle("Stop Recording", for: .normal)
+                self.recordButton.setTitle(NSLocalizedString("task_title_stop_record", comment: ""), for: .normal)
             } else {
-                self.recordButton.setTitle("Start Recording", for: .normal)
+                self.recordButton.setTitle(NSLocalizedString("task_title_start_record", comment: ""), for: .normal)
             }
             self.recordButton.isHidden = false
         case 0xE9:
             //Photo
             self.modeImageView.image = UIImage(systemName:"camera")
-            self.recordButton.setTitle("Take Photo", for: .normal)
+            self.recordButton.setTitle(NSLocalizedString("task_title_photo", comment: ""), for: .normal)
             self.recordButton.isHidden = false
         case 0xEA:
             //Timelapse
             self.modeImageView.image = UIImage(systemName:"timelapse")
             if (cameraStatus!.busy) {
-                self.recordButton.setTitle("Stop Recording", for: .normal)
+                self.recordButton.setTitle(NSLocalizedString("task_title_start_timelapse", comment: ""), for: .normal)
             } else {
-                self.recordButton.setTitle("Start Recording", for: .normal)
+                self.recordButton.setTitle(NSLocalizedString("task_title_start_timelapse", comment: ""), for: .normal)
             }
             self.recordButton.isHidden = false
         default:
             //Unknown
             self.modeImageView.image = nil
-            self.recordButton.setTitle("Status Unknown", for: .normal)
             self.recordButton.isHidden = false
         }
     }
@@ -144,16 +143,14 @@ class CameraViewController: UIViewController {
     @objc func toggleShutter() {
         NSLog("toggleShutter()")
         if (cameraStatus!.busy){
-            NSLog("toggleShutter() - Off")
             sendCameraCommand(command: Data([0x01, 0x01, 0x00]))
         } else {
-            NSLog("toggleShutter() - On")
             sendCameraCommand(command: Data([0x01, 0x01, 0x01]))
         }
     }
     
     func enableWifi() {
-        NSLog("Enabling WiFi...")
+        NSLog("enableWifi()")
         sendCameraCommand(command: Data([0x17, 0x01, 0x01]))
     }
     
@@ -173,10 +170,8 @@ class CameraViewController: UIViewController {
                 if ((self.lastCommand![0] == 0x01) && (commandResponse.response[1] == 0x01)){
                     //Shutter Command
                     if (self.lastCommand![2] == 0x01){
-                        NSLog("Set cameraStatus!.busy = true")
                         self.cameraStatus!.busy = true
                     } else {
-                        NSLog("Set cameraStatus!.busy = false")
                         self.cameraStatus!.busy = false
                     }
                 } else if (commandResponse.response[1] == 0x17){
@@ -198,7 +193,7 @@ class CameraViewController: UIViewController {
         peripheral?.requestCameraStatus() { result in
             switch result {
             case .success(let status):
-                print("Mode Value: \(status)")
+                print("Camera Status: \(status)")
                 self.cameraStatus = status
                 self.updateDisplay()
             case .failure(let error):
@@ -209,7 +204,7 @@ class CameraViewController: UIViewController {
     }
     
     func requestWiFiSettngs() {
-        NSLog("Requesting WiFi settings...")
+        NSLog("requestWiFiSettngs()")
         self.peripheral?.requestWiFiSettings { result in
             switch result {
             case .success(let settings):

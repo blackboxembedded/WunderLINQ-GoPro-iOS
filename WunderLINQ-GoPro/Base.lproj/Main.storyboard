@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--GoPros-->
+        <!--Camera List Controller-->
         <scene sceneID="d5R-dc-pig">
             <objects>
                 <tableViewController id="lzU-RV-5Xf" customClass="CameraListController" customModule="WunderLINQ_GoPro" customModuleProvider="target" sceneMemberID="viewController">
@@ -56,7 +56,7 @@
                             <outlet property="delegate" destination="lzU-RV-5Xf" id="ReL-hf-xys"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="GoPros" id="z6t-uJ-Kmd"/>
+                    <navigationItem key="navigationItem" id="z6t-uJ-Kmd"/>
                     <connections>
                         <outlet property="cameraListTableView" destination="4QJ-Tq-vRc" id="rHy-1I-bfx"/>
                         <outlet property="tableView" destination="4QJ-Tq-vRc" id="xdV-rK-Qip"/>

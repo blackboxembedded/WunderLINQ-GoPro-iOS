@@ -29,8 +29,8 @@ class CameraListController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        
+            
+        self.navigationItem.title = NSLocalizedString("cameralist_title", comment: "")
         if let peripheral = peripheral {
             NSLog("Disconnecting to \(peripheral.name)..")
             peripheral.disconnect()
@@ -47,6 +47,7 @@ class CameraListController: UITableViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        
         notificationCenter.removeObserver(self)
         scanner.stop()
     }
@@ -87,8 +88,6 @@ class CameraListController: UITableViewController {
             UIKeyCommand(input: "\u{d}", modifierFlags:[], action: #selector(enterKey)),
             UIKeyCommand(input: UIKeyCommand.inputUpArrow, modifierFlags:[], action: #selector(upKey)),
             UIKeyCommand(input: UIKeyCommand.inputDownArrow, modifierFlags:[], action: #selector(downKey)),
-            UIKeyCommand(input: UIKeyCommand.inputLeftArrow, modifierFlags:[], action: #selector(leftKey)),
-            UIKeyCommand(input: UIKeyCommand.inputRightArrow, modifierFlags:[], action: #selector(leftKey)),
             UIKeyCommand(input: UIKeyCommand.inputEscape, modifierFlags:[], action: #selector(escapeKey))
         ]
         if #available(iOS 15, *) {
@@ -99,7 +98,7 @@ class CameraListController: UITableViewController {
     
     @objc func enterKey() {
         let child = SpinnerViewController()
-        // add the spinner view controller
+        //Add the spinner view controller
         addChild(child)
         child.view.frame = view.frame
         view.addSubview(child.view)
@@ -107,7 +106,7 @@ class CameraListController: UITableViewController {
         
         let selected: Peripheral = scanner.peripherals[itemRow]
         selected.connect { error in
-            // then remove the spinner view controller
+            //Remove the spinner view controller
             child.willMove(toParent: nil)
             child.view.removeFromSuperview()
             child.removeFromParent()
@@ -174,10 +173,6 @@ class CameraListController: UITableViewController {
             itemRow = nextRow
         }
     }
-    
-    @objc func leftKey() {}
-    
-    @objc func rightKey() {}
     
     @objc func escapeKey() {
         guard let url = URL(string: "wunderlinq://") else {
