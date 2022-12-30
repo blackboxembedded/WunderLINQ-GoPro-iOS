@@ -15,30 +15,24 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import Foundation
 import UIKit
-import NetworkExtension
 
 class CameraViewController: UIViewController {
-    
-    @IBOutlet weak var cameraPreview: UIView!
+
     @IBOutlet weak var recordButton: UIButton!
     @IBOutlet weak var modeImageView: UIImageView!
     
     var peripheral: Peripheral?
     var cameraStatus: CameraStatus?
+    var wifiSettings: WiFiSettings?
+    
     var lastCommand: Data?
    
-    let child = SpinnerViewController()
-    var mediaPlayer = VLCMediaPlayer()
-    
-    let streamURL = URL(string: "udp://@0.0.0.0:8554")
-    
     @IBAction func didTapImageView(_ sender: UITapGestureRecognizer) {
         enableWifi()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
         
         let swipeUp = UISwipeGestureRecognizer(target: self, action: #selector(handleGesture))
         swipeUp.direction = .up
@@ -67,6 +61,7 @@ class CameraViewController: UIViewController {
     }
     
     override func viewWillDisappear(_ animated: Bool) {
+        NSLog("CameraView: viewWillDisappear()")
         super.viewWillDisappear(animated)
         if let peripheral = peripheral {
             NSLog("Disconnecting to \(peripheral.name)..")
@@ -80,13 +75,21 @@ class CameraViewController: UIViewController {
             UIKeyCommand(input: UIKeyCommand.inputUpArrow, modifierFlags:[], action: #selector(upKey)),
             UIKeyCommand(input: UIKeyCommand.inputDownArrow, modifierFlags:[], action: #selector(downKey)),
             UIKeyCommand(input: UIKeyCommand.inputLeftArrow, modifierFlags:[], action: #selector(leftKey)),
-            UIKeyCommand(input: UIKeyCommand.inputRightArrow, modifierFlags:[], action: #selector(leftKey)),
+            UIKeyCommand(input: UIKeyCommand.inputRightArrow, modifierFlags:[], action: #selector(rightKey)),
             UIKeyCommand(input: UIKeyCommand.inputEscape, modifierFlags:[], action: #selector(escapeKey))
         ]
         if #available(iOS 15, *) {
             commands.forEach { $0.wantsPriorityOverSystemBehavior = true }
         }
         return commands
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "cameraViewToPreviewView") {
+            let vc = segue.destination as! PreviewViewController
+            vc.peripheral = self.peripheral
+            vc.wifiSettings = self.wifiSettings
+        }
     }
     
     @objc func handleGesture(gesture: UISwipeGestureRecognizer) -> Void {
@@ -152,12 +155,6 @@ class CameraViewController: UIViewController {
     func enableWifi() {
         NSLog("Enabling WiFi...")
         sendCameraCommand(command: Data([0x17, 0x01, 0x01]))
-        /*
-        if (!(cameraStatus?.wifiEnabled ?? false)){
-            sendCameraCommand(command: Data([0x17, 0x01, 0x01]))
-        } else {
-            requestWiFiSettngs()
-        }*/
     }
     
     func sendCameraCommand(command: Data){
@@ -215,9 +212,13 @@ class CameraViewController: UIViewController {
         NSLog("Requesting WiFi settings...")
         self.peripheral?.requestWiFiSettings { result in
             switch result {
-            case .success(let wifiSettings):
-                NSLog("WiFi settings: \(wifiSettings)")
-                self.joinWiFi(with: wifiSettings.SSID, password: wifiSettings.password)
+            case .success(let settings):
+                NSLog("WiFi settings: \(settings)")
+                self.wifiSettings = settings
+                let destinationVC = PreviewViewController()
+                destinationVC.peripheral = self.peripheral
+                destinationVC.wifiSettings = self.wifiSettings
+                self.performSegue(withIdentifier: "cameraViewToPreviewView", sender: self)
             case .failure(let error):
                 NSLog("\(error)")
             }
@@ -260,7 +261,10 @@ class CameraViewController: UIViewController {
         self.dismiss(animated: true, completion: nil)
     }
     
-    @objc func rightKey() {}
+    @objc func rightKey() {
+        enableWifi()
+        
+    }
     
     @objc func escapeKey() {
         guard let url = URL(string: "wunderlinq://") else {
@@ -272,60 +276,5 @@ class CameraViewController: UIViewController {
             UIApplication.shared.openURL(url)
         }
     }
-    
-    private func joinWiFi(with SSID: String, password: String) {
-        NSLog("Joining WiFi \(SSID)...")
-        let configuration = NEHotspotConfiguration(ssid: SSID, passphrase: password, isWEP: false)
-        NEHotspotNetwork.fetchCurrent { network in
-              if network?.ssid == configuration.ssid {
-                  NSLog("Already connected to WiFi \(SSID)...")
-                  self.startPreview()
-              } else {
-                  NEHotspotConfigurationManager.shared.removeConfiguration(forSSID: SSID)
-                  configuration.joinOnce = false
-                  NEHotspotConfigurationManager.shared.apply(configuration) { error in
-                      guard let error = error else { NSLog("Joining WiFi succeeded"); self.startPreview(); return }
-                      NSLog("Joining WiFi failed: \(error)")
-                  }
-              }
-        }
-    }
-    
-    private func startPreview() {
-        mediaPlayer.delegate = self
-        mediaPlayer.drawable = cameraPreview
-        mediaPlayer.media = VLCMedia(url: streamURL!)
-        
-        let child = SpinnerViewController()
-        // add the spinner view controller
-        addChild(child)
-        child.view.frame = view.frame
-        
-        let config = URLSessionConfiguration.ephemeral
-        config.waitsForConnectivity = true
-        let sesh = URLSession(configuration: config)
-        let startURL = URL(string: "http://10.5.5.9:8080/gopro/camera/stream/start")!
-        let request = URLRequest(url: startURL)
-        sesh.dataTask(with: request) { (data, response, error) in
-            NSLog("HTTP: Response:\(response)")
-            self.getCameraStatus()
-            self.mediaPlayer.play()
-        }.resume()
-    }
 
-}
-
-extension CameraViewController: VLCMediaPlayerDelegate {
-
-    func mediaPlayerStateChanged(_ aNotification: Notification) {
-        NSLog("State: \(mediaPlayer.state)")
-
-        child.willMove(toParent: nil)
-        child.view.removeFromSuperview()
-        child.removeFromParent()
-        
-        if mediaPlayer.state == .stopped {
-            
-        }
-    }
 }

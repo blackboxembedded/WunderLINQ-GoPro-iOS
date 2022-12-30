@@ -117,12 +117,8 @@ class CameraListController: UITableViewController {
             }
             NSLog("Connected to \(selected.name)!")
             self.peripheral = selected
-            // Create an instance of PlayerTableViewController and pass the variable
             let destinationVC = CameraViewController()
             destinationVC.peripheral = selected
-
-            // Let's assume that the segue name is called playerSegue
-            // This will perform the segue and pre-load the variable for you to use
             self.performSegue(withIdentifier: "cameraListToCameraView", sender: self)
         }
     }
