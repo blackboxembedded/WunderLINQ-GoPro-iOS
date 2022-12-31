@@ -26,7 +26,6 @@ class PreviewViewController: UIViewController {
     
     var child = SpinnerViewController()
     var mediaPlayer = VLCMediaPlayer()
-    var locationManager = CLLocationManager()
     
     let startURL = URL(string: "http://10.5.5.9:8080/gopro/camera/stream/start")!
     let streamURL = URL(string: "udp://@0.0.0.0:8554")
@@ -91,21 +90,15 @@ class PreviewViewController: UIViewController {
     
     private func joinWiFi(with SSID: String, password: String) {
         NSLog("Joining WiFi \(SSID)...")
-        self.locationManager.requestWhenInUseAuthorization()
         let configuration = NEHotspotConfiguration(ssid: SSID, passphrase: password, isWEP: false)
-        NEHotspotNetwork.fetchCurrent { network in
-            print("Current SSID: \(network?.ssid)")
-              if network?.ssid == configuration.ssid {
-                  NSLog("Already connected to WiFi \(SSID)...")
-                  self.startPreview()
-              } else {
-                  NEHotspotConfigurationManager.shared.removeConfiguration(forSSID: SSID)
-                  configuration.joinOnce = false
-                  NEHotspotConfigurationManager.shared.apply(configuration) { error in
-                      guard let error = error else { NSLog("Joining WiFi succeeded"); self.startPreview(); return }
-                      NSLog("Joining WiFi failed: \(error)")
-                  }
-              }
+        
+        NEHotspotConfigurationManager.shared.apply(configuration) { error in
+            guard let error = error else { NSLog("Joining WiFi succeeded"); self.startPreview(); return }
+            NSLog("Joining WiFi failed: \(error)")
+            if error.localizedDescription == "already associated." {
+                print("Already Associated")
+                self.startPreview()
+            }
         }
     }
     

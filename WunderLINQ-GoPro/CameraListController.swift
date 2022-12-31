@@ -32,7 +32,7 @@ class CameraListController: UITableViewController {
         super.viewDidLoad()
             
         self.navigationItem.title = NSLocalizedString("cameralist_title", comment: "")
-        var menuBtn = UIButton()
+        let menuBtn = UIButton()
         menuBtn.setImage(UIImage(named: "Menu")?.withRenderingMode(.alwaysTemplate), for: .normal)
         if #available(iOS 13.0, *) {
             menuBtn.tintColor = UIColor(named: "imageTint")
@@ -150,7 +150,7 @@ class CameraListController: UITableViewController {
         if (itemRow == 0){
             nextRow = scanner.peripherals.count - 1
         } else if (itemRow < scanner.peripherals.count){
-            let nextRow = itemRow - 1
+            nextRow = itemRow - 1
         }
         self.cameraListTableView.cellForRow(at: IndexPath(row: itemRow, section: 0) as IndexPath)?.contentView.backgroundColor = UIColor(named: "backgrounds")!
         self.cameraListTableView.cellForRow(at: IndexPath(row: itemRow, section: 0) as IndexPath)?.textLabel?.backgroundColor = UIColor(named: "backgrounds")!
