@@ -7,10 +7,8 @@
 	<key>PreferenceSpecifiers</key>
 	<array>
 		<dict>
-			<key>IASKViewControllerClass</key>
+			<key>IASKViewControllerStoryBoardId</key>
 			<string>ColorPickerViewController</string>
-			<key>IASKViewControllerSelector</key>
-			<string>initWithFile:specifier:</string>
 			<key>Title</key>
 			<string>pref_highlightColor_title</string>
 			<key>Type</key>

@@ -52,6 +52,11 @@ class CameraViewController: UIViewController {
         
         self.navigationItem.title = peripheral?.name ?? "?"
         
+        var highlightColor = UIColor(named: "accent")
+        if let colorData = UserDefaults.standard.data(forKey: "highlight_color_preference"){
+            highlightColor = NSKeyedUnarchiver.unarchiveObject(with: colorData) as? UIColor
+        }
+        recordButton.backgroundColor = highlightColor
         recordButton.addTarget(self, action: #selector(toggleShutter), for: .touchUpInside)
         recordButton.isHidden = true
     }

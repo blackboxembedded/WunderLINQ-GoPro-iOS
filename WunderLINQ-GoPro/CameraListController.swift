@@ -142,55 +142,47 @@ class CameraListController: UITableViewController {
     }
     
     @objc func upKey() {
+        var highlightColor = UIColor(named: "accent")
+        if let colorData = UserDefaults.standard.data(forKey: "highlight_color_preference"){
+            highlightColor = NSKeyedUnarchiver.unarchiveObject(with: colorData) as? UIColor
+        }
+        var nextRow = 0
         if (itemRow == 0){
-            let nextRow = scanner.peripherals.count - 1
-            self.cameraListTableView.cellForRow(at: IndexPath(row: itemRow, section: 0) as IndexPath)?.contentView.backgroundColor = UIColor.black
-            self.cameraListTableView.cellForRow(at: IndexPath(row: itemRow, section: 0) as IndexPath)?.textLabel?.backgroundColor = UIColor.black
-            self.cameraListTableView.cellForRow(at: IndexPath(row: itemRow, section: 0) as IndexPath)?.textLabel?.textColor = UIColor.white
-            cameraListTableView.reloadData()
-            self.cameraListTableView.cellForRow(at: IndexPath(row: nextRow, section: 0) as IndexPath)?.contentView.backgroundColor = UIColor.white
-            self.cameraListTableView.cellForRow(at: IndexPath(row: nextRow, section: 0) as IndexPath)?.textLabel?.backgroundColor = UIColor.white
-            self.cameraListTableView.cellForRow(at: IndexPath(row: nextRow, section: 0) as IndexPath)?.textLabel?.textColor = UIColor.black
-            self.cameraListTableView.scrollToRow(at: IndexPath(row: nextRow, section: 0), at: .middle, animated: true)
-            itemRow = nextRow
+            nextRow = scanner.peripherals.count - 1
         } else if (itemRow < scanner.peripherals.count){
             let nextRow = itemRow - 1
-            self.cameraListTableView.cellForRow(at: IndexPath(row: itemRow, section: 0) as IndexPath)?.contentView.backgroundColor = UIColor.black
-            self.cameraListTableView.cellForRow(at: IndexPath(row: itemRow, section: 0) as IndexPath)?.textLabel?.backgroundColor = UIColor.black
-            self.cameraListTableView.cellForRow(at: IndexPath(row: itemRow, section: 0) as IndexPath)?.textLabel?.textColor = UIColor.white
-            cameraListTableView.reloadData()
-            self.cameraListTableView.cellForRow(at: IndexPath(row: nextRow, section: 0) as IndexPath)?.contentView.backgroundColor = UIColor.white
-            self.cameraListTableView.cellForRow(at: IndexPath(row: nextRow, section: 0) as IndexPath)?.textLabel?.backgroundColor = UIColor.white
-            self.cameraListTableView.cellForRow(at: IndexPath(row: nextRow, section: 0) as IndexPath)?.textLabel?.textColor = UIColor.black
-            self.cameraListTableView.scrollToRow(at: IndexPath(row: nextRow, section: 0), at: .middle, animated: true)
-            itemRow = nextRow
         }
+        self.cameraListTableView.cellForRow(at: IndexPath(row: itemRow, section: 0) as IndexPath)?.contentView.backgroundColor = UIColor(named: "backgrounds")!
+        self.cameraListTableView.cellForRow(at: IndexPath(row: itemRow, section: 0) as IndexPath)?.textLabel?.backgroundColor = UIColor(named: "backgrounds")!
+        self.cameraListTableView.cellForRow(at: IndexPath(row: itemRow, section: 0) as IndexPath)?.textLabel?.textColor = UIColor(named: "imageTint")!
+        cameraListTableView.reloadData()
+        self.cameraListTableView.cellForRow(at: IndexPath(row: nextRow, section: 0) as IndexPath)?.contentView.backgroundColor = highlightColor
+        self.cameraListTableView.cellForRow(at: IndexPath(row: nextRow, section: 0) as IndexPath)?.textLabel?.backgroundColor = highlightColor
+        self.cameraListTableView.cellForRow(at: IndexPath(row: nextRow, section: 0) as IndexPath)?.textLabel?.textColor = UIColor.white
+        self.cameraListTableView.scrollToRow(at: IndexPath(row: nextRow, section: 0), at: .middle, animated: true)
+        itemRow = nextRow
     }
     
     @objc func downKey() {
-        if (itemRow == (scanner.peripherals.count - 1)){
-            let nextRow = 0
-            self.cameraListTableView.cellForRow(at: IndexPath(row: itemRow, section: 0) as IndexPath)?.contentView.backgroundColor = UIColor.black
-            self.cameraListTableView.cellForRow(at: IndexPath(row: itemRow, section: 0) as IndexPath)?.textLabel?.backgroundColor = UIColor.black
-            self.cameraListTableView.cellForRow(at: IndexPath(row: itemRow, section: 0) as IndexPath)?.textLabel?.textColor = UIColor.white
-            cameraListTableView.reloadData()
-            self.cameraListTableView.cellForRow(at: IndexPath(row: nextRow, section: 0) as IndexPath)?.contentView.backgroundColor = UIColor.white
-            self.cameraListTableView.cellForRow(at: IndexPath(row: nextRow, section: 0) as IndexPath)?.textLabel?.backgroundColor = UIColor.white
-            self.cameraListTableView.cellForRow(at: IndexPath(row: nextRow, section: 0) as IndexPath)?.textLabel?.textColor = UIColor.black
-            self.cameraListTableView.scrollToRow(at: IndexPath(row: nextRow, section: 0), at: .middle, animated: true)
-            itemRow = nextRow
-        } else if (itemRow < scanner.peripherals.count ){
-            let nextRow = itemRow + 1
-            self.cameraListTableView.cellForRow(at: IndexPath(row: itemRow, section: 0) as IndexPath)?.contentView.backgroundColor = UIColor.black
-            self.cameraListTableView.cellForRow(at: IndexPath(row: itemRow, section: 0) as IndexPath)?.textLabel?.backgroundColor = UIColor.black
-            self.cameraListTableView.cellForRow(at: IndexPath(row: itemRow, section: 0) as IndexPath)?.textLabel?.textColor = UIColor.white
-            cameraListTableView.reloadData()
-            self.cameraListTableView.cellForRow(at: IndexPath(row: nextRow, section: 0) as IndexPath)?.contentView.backgroundColor = UIColor.white
-            self.cameraListTableView.cellForRow(at: IndexPath(row: nextRow, section: 0) as IndexPath)?.textLabel?.backgroundColor = UIColor.white
-            self.cameraListTableView.cellForRow(at: IndexPath(row: nextRow, section: 0) as IndexPath)?.textLabel?.textColor = UIColor.black
-            self.cameraListTableView.scrollToRow(at: IndexPath(row: nextRow, section: 0), at: .middle, animated: true)
-            itemRow = nextRow
+        var highlightColor = UIColor(named: "accent")
+        if let colorData = UserDefaults.standard.data(forKey: "highlight_color_preference"){
+            highlightColor = NSKeyedUnarchiver.unarchiveObject(with: colorData) as? UIColor
         }
+        var nextRow = 0
+        if (itemRow == (scanner.peripherals.count - 1)){
+            nextRow = 0
+        } else if (itemRow < scanner.peripherals.count ){
+            nextRow = itemRow + 1
+        }
+        self.cameraListTableView.cellForRow(at: IndexPath(row: itemRow, section: 0) as IndexPath)?.contentView.backgroundColor = UIColor.black
+        self.cameraListTableView.cellForRow(at: IndexPath(row: itemRow, section: 0) as IndexPath)?.textLabel?.backgroundColor = UIColor.black
+        self.cameraListTableView.cellForRow(at: IndexPath(row: itemRow, section: 0) as IndexPath)?.textLabel?.textColor = UIColor.white
+        cameraListTableView.reloadData()
+        self.cameraListTableView.cellForRow(at: IndexPath(row: nextRow, section: 0) as IndexPath)?.contentView.backgroundColor = highlightColor
+        self.cameraListTableView.cellForRow(at: IndexPath(row: nextRow, section: 0) as IndexPath)?.textLabel?.backgroundColor = highlightColor
+        self.cameraListTableView.cellForRow(at: IndexPath(row: nextRow, section: 0) as IndexPath)?.textLabel?.textColor = UIColor.white
+        self.cameraListTableView.scrollToRow(at: IndexPath(row: nextRow, section: 0), at: .middle, animated: true)
+        itemRow = nextRow
     }
     
     @objc func escapeKey() {

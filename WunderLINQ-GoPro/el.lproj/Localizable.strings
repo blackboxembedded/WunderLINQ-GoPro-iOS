@@ -19,3 +19,4 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 "task_title_stop_record" = "Παύση καταγρ. βίντεο";
 "task_title_start_timelapse" = "Start Timelapse Recording";
 "task_title_stop_timelapse" = "Stop Timelapse Recording";
+"pref_highlightColor_title" = "Χρώμα επισήμανσης";

@@ -34,6 +34,7 @@
                                         </label>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chevron.right" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="hZC-vE-TvD">
                                             <rect key="frame" x="321" y="7" width="56" height="51.333333333333329"/>
+                                            <color key="tintColor" name="imageTint"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="56" id="Ihn-Tz-19S"/>
                                             </constraints>
@@ -61,6 +62,7 @@
                         <outlet property="cameraListTableView" destination="4QJ-Tq-vRc" id="rHy-1I-bfx"/>
                         <outlet property="tableView" destination="4QJ-Tq-vRc" id="xdV-rK-Qip"/>
                         <segue destination="cAf-BU-IIZ" kind="show" identifier="cameraListToCameraView" id="VRz-tg-pu2"/>
+                        <segue destination="8zk-r4-3vb" kind="show" id="rAD-1Q-qM6"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QQ0-7R-Ebx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -167,6 +169,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="VCi-bw-Mc6">
                         <rect key="frame" x="0.0" y="59" width="393" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" name="imageTint"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -177,11 +180,30 @@
             </objects>
             <point key="canvasLocation" x="-1054.1984732824426" y="-283.0985915492958"/>
         </scene>
+        <!--Color Picker View Controller-->
+        <scene sceneID="55C-H4-sn7">
+            <objects>
+                <viewController storyboardIdentifier="ColorPickerViewController" id="8zk-r4-3vb" customClass="ColorPickerViewController" customModule="WunderLINQ_GoPro" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="NKw-Pa-aXf">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="dBF-pn-n36"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Zwk-qg-yw0"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="AGz-1b-X1f" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1054" y="392"/>
+        </scene>
     </scenes>
     <resources>
         <image name="chevron.right" catalog="system" width="97" height="128"/>
         <namedColor name="AccentColor">
             <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="imageTint">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

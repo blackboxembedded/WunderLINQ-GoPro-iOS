@@ -23,6 +23,7 @@ import InAppSettingsKit
 
 class ColorPickerViewController: UIViewController
 {
+    
     private let defaultColorPickerSize = CGSize(width: 320, height: 320)
     private let brightnessSliderWidthHeightRatio: CGFloat = 0.1
     private var colorPicker: ChromaColorPicker!
@@ -34,10 +35,11 @@ class ColorPickerViewController: UIViewController
         view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         view.backgroundColor = UIColor(named: "backgrounds")
         view.autoresizesSubviews = true
-        
+
         colorPicker = ChromaColorPicker(frame: CGRect(x: 0, y: 0, width: defaultColorPickerSize.width, height: defaultColorPickerSize.height))
         colorPicker.delegate = self
         view.addSubview(colorPicker)
+        
         colorPicker.autoresizingMask = [.flexibleWidth, .flexibleHeight]
 
         // Attach a ChromaBrightnessSlider to a ChromaColorPicker
@@ -56,6 +58,7 @@ class ColorPickerViewController: UIViewController
     }
     
     @objc func initWithFile (_ file: NSString, specifier: IASKSpecifier ) -> ColorPickerViewController {
+        print("IN initWithFile")
         let vc = ColorPickerViewController()
         return vc
     }
@@ -63,15 +66,15 @@ class ColorPickerViewController: UIViewController
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-        var smallestDimension = view.bounds.width
+        var smallestDimension = view.bounds.width - 64
         if(view.bounds.height < view.bounds.width){
-            smallestDimension = view.bounds.height
-            colorPicker.frame = CGRect(x: 0, y: 0, width: smallestDimension, height: smallestDimension)
-            brightnessSlider.frame = CGRect(x: (smallestDimension + 16), y: ((smallestDimension / 2) - 16), width: smallestDimension, height: 32)
+            smallestDimension = view.bounds.height - 64
+            colorPicker.frame = CGRect(x: 64, y: 64, width: smallestDimension, height: smallestDimension)
+            brightnessSlider.frame = CGRect(x: (smallestDimension + 16) + 64, y: ((smallestDimension / 2) - 16) + 64, width: smallestDimension, height: 32)
         } else {
-            smallestDimension = view.bounds.width
-            colorPicker.frame = CGRect(x: 0, y: 0, width: smallestDimension, height: smallestDimension)
-            brightnessSlider.frame = CGRect(x: 0, y: (smallestDimension + 16), width: smallestDimension, height: 32)
+            smallestDimension = view.bounds.width - 64
+            colorPicker.frame = CGRect(x: 32, y: 96, width: smallestDimension, height: smallestDimension)
+            brightnessSlider.frame = CGRect(x: 32, y: (smallestDimension + 16) + 96, width: smallestDimension, height: 32)
         }
         
         let verticalOffset = -defaultColorPickerSize.height / 6
@@ -85,6 +88,7 @@ class ColorPickerViewController: UIViewController
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.title = NSLocalizedString("pref_highlightColor_title", comment: "")
     }
 }
 
