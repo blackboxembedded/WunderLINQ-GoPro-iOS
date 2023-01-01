@@ -258,7 +258,7 @@ class CameraViewController: UIViewController {
     }
     
     @objc func leftKey() {
-        self.dismiss(animated: true, completion: nil)
+        navigationController?.popToRootViewController(animated: true)
     }
     
     @objc func rightKey() {
