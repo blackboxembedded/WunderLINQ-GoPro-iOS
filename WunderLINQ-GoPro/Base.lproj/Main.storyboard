@@ -197,6 +197,7 @@
             <point key="canvasLocation" x="-1054" y="392"/>
         </scene>
     </scenes>
+    <color key="tintColor" name="imageTint"/>
     <resources>
         <image name="chevron.right" catalog="system" width="97" height="128"/>
         <namedColor name="AccentColor">

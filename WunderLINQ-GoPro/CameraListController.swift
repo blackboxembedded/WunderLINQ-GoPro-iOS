@@ -94,6 +94,15 @@ class CameraListController: UITableViewController {
     @objc func updateDisplay(){
         if self.viewIfLoaded?.window != nil {
             cameraListTableView.reloadData()
+            if ((self.itemRow == 0) && (scanner.peripherals.count > 0)){
+                var highlightColor = UIColor(named: "accent")
+                if let colorData = UserDefaults.standard.data(forKey: "highlight_color_preference"){
+                    highlightColor = NSKeyedUnarchiver.unarchiveObject(with: colorData) as? UIColor
+                }
+                self.cameraListTableView.cellForRow(at: IndexPath(row: 0, section: 0) as IndexPath)?.contentView.backgroundColor = highlightColor
+                self.cameraListTableView.cellForRow(at: IndexPath(row: 0, section: 0) as IndexPath)?.textLabel?.backgroundColor = highlightColor
+                self.cameraListTableView.cellForRow(at: IndexPath(row: 0, section: 0) as IndexPath)?.textLabel?.textColor = UIColor.white
+            }
         }
     }
     

@@ -7,6 +7,12 @@
 	<key>PreferenceSpecifiers</key>
 	<array>
 		<dict>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+			<key>Title</key>
+			<string>ui_title</string>
+		</dict>
+		<dict>
 			<key>IASKViewControllerStoryBoardId</key>
 			<string>ColorPickerViewController</string>
 			<key>Title</key>
