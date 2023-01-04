@@ -40,6 +40,7 @@ class PreviewViewController: UIViewController {
         mediaPlayer.delegate = self
         mediaPlayer.drawable = previewView
         mediaPlayer.media = VLCMedia(url: streamURL!)
+        mediaPlayer.audio?.volume = 0
         
         self.child = SpinnerViewController()
         addChild(child)

@@ -116,9 +116,7 @@
                     <connections>
                         <outlet property="modeImageView" destination="16v-Dj-91C" id="aHY-aa-ltC"/>
                         <outlet property="recordButton" destination="ghZ-tg-nuG" id="zan-Zn-i0i"/>
-                        <segue destination="lGG-Kp-ZKe" kind="popoverPresentation" identifier="cameraViewToPreviewView" popoverAnchorView="jR5-jn-RFI" id="E9x-Kh-rol">
-                            <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
-                        </segue>
+                        <segue destination="lGG-Kp-ZKe" kind="presentation" identifier="cameraViewToPreviewView" id="E9x-Kh-rol"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fCP-VC-eJM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
