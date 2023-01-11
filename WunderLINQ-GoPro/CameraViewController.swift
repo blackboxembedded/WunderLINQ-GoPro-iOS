@@ -94,6 +94,7 @@ class CameraViewController: UIViewController {
             let vc = segue.destination as! PreviewViewController
             vc.peripheral = self.peripheral
             vc.wifiSettings = self.wifiSettings
+            vc.cameraStatus = self.cameraStatus
         }
     }
     
@@ -218,6 +219,7 @@ class CameraViewController: UIViewController {
                 let destinationVC = PreviewViewController()
                 destinationVC.peripheral = self.peripheral
                 destinationVC.wifiSettings = self.wifiSettings
+                destinationVC.cameraStatus = self.cameraStatus
                 self.performSegue(withIdentifier: "cameraViewToPreviewView", sender: self)
             case .failure(let error):
                 NSLog("\(error)")
@@ -238,8 +240,19 @@ class CameraViewController: UIViewController {
             let mode = cameraStatus?.mode
             cameraStatus?.mode = mode! + 1
         }
+        var cmode:UInt8 = 0x00
+        switch (cameraStatus?.mode){
+        case 0xE8:
+            cmode = 0x00
+        case 0xE9:
+            cmode = 0x01
+        case 0xEA:
+            cmode = 0x02
+        default:
+            print("Unknown mode")
+        }
         if((0xE8...0xEA).contains(cameraStatus!.mode)){
-            sendCameraCommand(command: Data([0x3E,0x02,0x03,cameraStatus!.mode]))
+            sendCameraCommand(command: Data([0x02,0x01,cmode]))
         }
     }
     
@@ -252,8 +265,19 @@ class CameraViewController: UIViewController {
             let mode = cameraStatus?.mode
             cameraStatus?.mode = mode! - 1
         }
+        var cmode:UInt8 = 0x00
+        switch (cameraStatus?.mode){
+        case 0xE8:
+            cmode = 0x00
+        case 0xE9:
+            cmode = 0x01
+        case 0xEA:
+            cmode = 0x02
+        default:
+            print("Unknown mode")
+        }
         if((0xE8...0xEA).contains(cameraStatus!.mode)){
-            sendCameraCommand(command: Data([0x3E,0x02,0x03,cameraStatus!.mode]))
+            sendCameraCommand(command: Data([0x02,0x01,cmode]))
         }
     }
     

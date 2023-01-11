@@ -23,11 +23,13 @@ class PreviewViewController: UIViewController {
     
     var peripheral: Peripheral?
     var wifiSettings: WiFiSettings?
+    var cameraStatus: CameraStatus?
     
     var child = SpinnerViewController()
     var mediaPlayer = VLCMediaPlayer()
     
     let startURL = URL(string: "http://10.5.5.9:8080/gopro/camera/stream/start")!
+    let startURLold = URL(string: "http://10.5.5.9/gp/gpControl/execute?p1=gpStream&a1=proto_v2&c1=restart")!
     let streamURL = URL(string: "udp://@0.0.0.0:8554")
     
     override func viewDidLoad() {
@@ -107,7 +109,10 @@ class PreviewViewController: UIViewController {
         let config = URLSessionConfiguration.ephemeral
         config.waitsForConnectivity = true
         let sesh = URLSession(configuration: config)
-        let request = URLRequest(url: startURL)
+        var request = URLRequest(url: startURL)
+        if (!cameraStatus!.openGoPro){
+            request = URLRequest(url: startURLold)
+        }
         sesh.dataTask(with: request) { (data, response, error) in
             NSLog("HTTP: Response:\(response)")
             self.mediaPlayer.play()

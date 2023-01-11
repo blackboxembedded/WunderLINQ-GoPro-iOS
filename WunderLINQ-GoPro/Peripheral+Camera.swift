@@ -28,6 +28,7 @@ struct CameraStatus {
     var mode: UInt8
     var wifiEnabled: Bool
     var previewAvailable: Bool
+    var openGoPro: Bool
 }
 
 struct CommandResponse {
@@ -150,7 +151,7 @@ extension Peripheral {
         let serviceUUID = CBUUID(string: "FEA6")
         let commandUUID = CBUUID(string: "B5F90076-AA8D-11E3-9046-0002A5D5C51B")
         let commandResponseUUID = CBUUID(string: "B5F90077-AA8D-11E3-9046-0002A5D5C51B")
-        let data = Data([0x05,0x13,0x08,0x11,0x37,0x60])
+        let data = Data([0x07, 0x13, 0x08, 0x11, 0x2B, 0x2C, 0x37, 0x60])
 
         let finishWithResult: (Result<CameraStatus, Error>) -> Void = { result in
             // make sure to dispatch the result on the main thread
@@ -172,8 +173,28 @@ extension Peripheral {
                 finishWithResult(.failure(CameraError.invalidResponse))
                 return
             }
-            
-            finishWithResult(.success(CameraStatus(busy: (data[5] == 0x01), mode: data[17], wifiEnabled: (data[8] == 0x01), previewAvailable: (data[11] == 0x01))))
+            var cmode: UInt8 = 0x00
+            if (data[12] == 0x60){
+                cmode = data[17]
+            } else if(data[12] == 0x2C){
+                switch (data[11]){
+                case 0x00:
+                    //Video
+                    cmode = 0xE8
+                    if(data[14] == 0x01){
+                        cmode = 0xEA
+                    }
+                case 0x01:
+                    //Photo
+                    cmode = 0xE8
+                case 0x02:
+                    //Timelapse
+                    cmode = 0xEA
+                default:
+                    cmode = 0x00
+                }
+            }
+            finishWithResult(.success(CameraStatus(busy: (data[5] == 0x01), mode: cmode, wifiEnabled: (data[8] == 0x01), previewAvailable: (data[11] == 0x01), openGoPro: (data[12] == 0x60))))
             return
         } completion: { [weak self] error in
             // Check that we successfully enable the notification for the response before writing to the characteristic
