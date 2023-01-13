@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CameraListViewCell" id="V1O-Gb-yyi">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CameraListViewCell" id="V1O-Gb-yyi" customClass="CameraTableViewCell" customModule="WunderLINQ_GoPro" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="50" width="393" height="65"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="V1O-Gb-yyi" id="FTc-qt-oay">
@@ -27,8 +27,9 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4aD-K6-ZX5">
-                                            <rect key="frame" x="0.0" y="16" width="305" height="33"/>
-                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="50"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="305" height="65"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="36"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -46,10 +47,15 @@
                                         <constraint firstAttribute="trailing" secondItem="hZC-vE-TvD" secondAttribute="trailing" constant="16" id="CNH-2F-4J1"/>
                                         <constraint firstItem="4aD-K6-ZX5" firstAttribute="leading" secondItem="FTc-qt-oay" secondAttribute="leading" id="LpB-gg-VT6"/>
                                         <constraint firstAttribute="bottom" secondItem="hZC-vE-TvD" secondAttribute="bottom" constant="5" id="Q3N-cY-MZq"/>
-                                        <constraint firstItem="4aD-K6-ZX5" firstAttribute="top" secondItem="FTc-qt-oay" secondAttribute="top" constant="16" id="Xz2-AI-rNd"/>
-                                        <constraint firstAttribute="bottom" secondItem="4aD-K6-ZX5" secondAttribute="bottom" constant="16" id="b9g-Ln-L4N"/>
+                                        <constraint firstItem="4aD-K6-ZX5" firstAttribute="top" secondItem="FTc-qt-oay" secondAttribute="top" id="Xz2-AI-rNd"/>
+                                        <constraint firstAttribute="bottom" secondItem="4aD-K6-ZX5" secondAttribute="bottom" id="b9g-Ln-L4N"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="chevronImage" destination="hZC-vE-TvD" id="KD0-pE-PNo"/>
+                                    <outlet property="nameLabel" destination="4aD-K6-ZX5" id="8f9-o9-NCM"/>
+                                    <outlet property="uiView" destination="FTc-qt-oay" id="HPm-Bb-KCm"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>

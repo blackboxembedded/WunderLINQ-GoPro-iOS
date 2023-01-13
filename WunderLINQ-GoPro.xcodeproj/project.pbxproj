@@ -30,6 +30,7 @@
 		7E449BA4295F7D98001C2039 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7E449BA6295F7D98001C2039 /* Localizable.strings */; };
 		7E449BB3295F96E1001C2039 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 7E449BB2295F96E1001C2039 /* Settings.bundle */; };
 		7E449BB5295F9812001C2039 /* ColorPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E449BB4295F9812001C2039 /* ColorPickerViewController.swift */; };
+		7EA884F92971DA0200D12D79 /* CameraTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA884F82971DA0200D12D79 /* CameraTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -92,6 +93,7 @@
 		7E449BB1295F7FD2001C2039 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/Localizable.strings; sourceTree = "<group>"; };
 		7E449BB2295F96E1001C2039 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		7E449BB4295F9812001C2039 /* ColorPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerViewController.swift; sourceTree = "<group>"; };
+		7EA884F82971DA0200D12D79 /* CameraTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraTableViewCell.swift; sourceTree = "<group>"; };
 		8E7EB88A26FD224C0E2890F5 /* Pods-WunderLINQ-GoPro-WunderLINQ-GoProUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WunderLINQ-GoPro-WunderLINQ-GoProUITests.release.xcconfig"; path = "Target Support Files/Pods-WunderLINQ-GoPro-WunderLINQ-GoProUITests/Pods-WunderLINQ-GoPro-WunderLINQ-GoProUITests.release.xcconfig"; sourceTree = "<group>"; };
 		B9CB9F5984D7ACDA34942B96 /* Pods_WunderLINQ_GoProTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WunderLINQ_GoProTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D896D32B295D1A1800B7FEAD /* WunderLINQ-GoPro-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WunderLINQ-GoPro-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -172,6 +174,7 @@
 				7E046BB0295B59130061A5F4 /* SpinnerViewController.swift */,
 				7E449B9E295F6137001C2039 /* PreviewViewController.swift */,
 				7E046BAE295629A90061A5F4 /* CameraViewController.swift */,
+				7EA884F82971DA0200D12D79 /* CameraTableViewCell.swift */,
 				7E17C2BE29560E0900CF2E96 /* CameraListController.swift */,
 				7E046BA6295616C20061A5F4 /* CentralManager.swift */,
 				7E046BA7295616C20061A5F4 /* Peripheral.swift */,
@@ -468,6 +471,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7EA884F92971DA0200D12D79 /* CameraTableViewCell.swift in Sources */,
 				7E046BA9295616C30061A5F4 /* Peripheral.swift in Sources */,
 				7E17C2BF29560E0900CF2E96 /* CameraListController.swift in Sources */,
 				7E449BB5295F9812001C2039 /* ColorPickerViewController.swift in Sources */,
