@@ -21,9 +21,9 @@ class SpinnerViewController: UIViewController {
 
     override func loadView() {
         view = UIView()
-        view.backgroundColor = UIColor(white: 0, alpha: 0.7)
-
-        spinner.transform = CGAffineTransform.init(scaleX: 3, y: 3)
+        view.backgroundColor = UIColor(named: "backgrounds")!
+        spinner.color = UIColor(named: "imageTint")!
+        spinner.transform = CGAffineTransform.init(scaleX: 10, y: 10)
         spinner.translatesAutoresizingMaskIntoConstraints = false
         spinner.startAnimating()
         view.addSubview(spinner)
