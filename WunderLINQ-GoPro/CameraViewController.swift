@@ -134,7 +134,7 @@ class CameraViewController: UIViewController {
             //Timelapse
             self.modeImageView.image = UIImage(systemName:"timelapse")
             if (cameraStatus!.busy) {
-                self.recordButton.setTitle(NSLocalizedString("task_title_start_timelapse", comment: ""), for: .normal)
+                self.recordButton.setTitle(NSLocalizedString("task_title_stop_timelapse", comment: ""), for: .normal)
             } else {
                 self.recordButton.setTitle(NSLocalizedString("task_title_start_timelapse", comment: ""), for: .normal)
             }
