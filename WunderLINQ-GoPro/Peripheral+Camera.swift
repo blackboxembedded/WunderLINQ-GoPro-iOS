@@ -42,12 +42,6 @@ extension Peripheral {
     /// - Parameter completion: The completion handler with an optional error that is invoked once the request completes.
     ///
     func setCommand(command: Data, completion: ((Result<CommandResponse, Error>) -> Void)?) {
-        var messageHexString = ""
-        for i in 0 ..< command.count {
-            messageHexString += String(format: "%02X", command[i])
-        }
-        NSLog("Command: \(messageHexString)")
-        
         let serviceUUID = CBUUID(string: "FEA6")
         let commandUUID = CBUUID(string: "B5F90072-AA8D-11E3-9046-0002A5D5C51B")
         let commandResponseUUID = CBUUID(string: "B5F90073-AA8D-11E3-9046-0002A5D5C51B")
@@ -61,13 +55,6 @@ extension Peripheral {
         }
         
         registerObserver(serviceUUID: serviceUUID, characteristicUUID: commandResponseUUID) { data in
-
-            var messageHexString = ""
-            for i in 0 ..< data.count {
-                messageHexString += String(format: "%02X", data[i])
-            }
-            NSLog("Response: \(messageHexString)")
-            
             // The response to a command is expected to be 3 bytes
             if data.count != 3 {
                 finishWithResult(.failure(CameraError.invalidResponse))
@@ -75,11 +62,10 @@ extension Peripheral {
             }
 
             // The third byte represents the camera response. If the byte is 0x00 then the request was successful
-            if (data[2] != 0x00) {
+            if (data[1] != 0x02) {
                 finishWithResult(.failure(CameraError.responseError))
                 return
             }
-            
             finishWithResult(.success(CommandResponse(command:command, response:data)))
         } completion: { [weak self] error in
             // Check that we successfully enable the notification for the response before writing to the characteristic

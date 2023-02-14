@@ -165,14 +165,8 @@ class CameraViewController: UIViewController {
         self.peripheral?.setCommand(command: command) { result in
             switch result {
             case .success(let response):
-                NSLog("Command Response: \(response)")
                 //Check command/response and do something
                 let commandResponse: CommandResponse = response
-                var messageHexString = ""
-                for i in 0 ..< commandResponse.command.count {
-                    messageHexString += String(format: "%02X", commandResponse.command[i])
-                }
-                NSLog("Command: \(messageHexString)")
                 if ((self.lastCommand![0] == 0x01) && (commandResponse.response[1] == 0x01)){
                     //Shutter Command
                     if (self.lastCommand![2] == 0x01){
@@ -186,7 +180,6 @@ class CameraViewController: UIViewController {
                         self.requestWiFiSettngs()
                     }
                 }
-                //self.getCameraStatus()
                 self.updateDisplay()
             case .failure(let error):
                 NSLog("\(error)")
