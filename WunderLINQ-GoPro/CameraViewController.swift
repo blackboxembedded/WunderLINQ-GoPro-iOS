@@ -225,52 +225,56 @@ class CameraViewController: UIViewController {
     }
     
     @objc func upKey() {
-        if (cameraStatus?.mode == 0x00) {
-            getCameraStatus()
-        } else if (cameraStatus?.mode == 0xEA) {
-            cameraStatus?.mode = 0xE8
-        } else {
-            let mode = cameraStatus?.mode
-            cameraStatus?.mode = mode! + 1
-        }
-        var cmode:UInt8 = 0x00
-        switch (cameraStatus?.mode){
-        case 0xE8:
-            cmode = 0x00
-        case 0xE9:
-            cmode = 0x01
-        case 0xEA:
-            cmode = 0x02
-        default:
-            print("Unknown mode")
-        }
-        if((0xE8...0xEA).contains(cameraStatus!.mode)){
-            sendCameraCommand(command: Data([0x02,0x01,cmode]))
+        if (cameraStatus != nil){
+            if (cameraStatus?.mode == 0x00) {
+                getCameraStatus()
+            } else if (cameraStatus?.mode == 0xEA) {
+                cameraStatus?.mode = 0xE8
+            } else {
+                let mode = cameraStatus?.mode
+                cameraStatus?.mode = mode! + 1
+            }
+            var cmode:UInt8 = 0x00
+            switch (cameraStatus?.mode){
+            case 0xE8:
+                cmode = 0x00
+            case 0xE9:
+                cmode = 0x01
+            case 0xEA:
+                cmode = 0x02
+            default:
+                print("Unknown mode")
+            }
+            if((0xE8...0xEA).contains(cameraStatus!.mode)){
+                sendCameraCommand(command: Data([0x02,0x01,cmode]))
+            }
         }
     }
     
     @objc func downKey() {
-        if (cameraStatus?.mode == 0x00) {
-            getCameraStatus()
-        } else if (cameraStatus?.mode == 0xE8) {
-            cameraStatus?.mode = 0xEA
-        } else {
-            let mode = cameraStatus?.mode
-            cameraStatus?.mode = mode! - 1
-        }
-        var cmode:UInt8 = 0x00
-        switch (cameraStatus?.mode){
-        case 0xE8:
-            cmode = 0x00
-        case 0xE9:
-            cmode = 0x01
-        case 0xEA:
-            cmode = 0x02
-        default:
-            print("Unknown mode")
-        }
-        if((0xE8...0xEA).contains(cameraStatus!.mode)){
-            sendCameraCommand(command: Data([0x02,0x01,cmode]))
+        if (cameraStatus != nil){
+            if (cameraStatus?.mode == 0x00) {
+                getCameraStatus()
+            } else if (cameraStatus?.mode == 0xE8) {
+                cameraStatus?.mode = 0xEA
+            } else {
+                let mode = cameraStatus?.mode
+                cameraStatus?.mode = mode! - 1
+            }
+            var cmode:UInt8 = 0x00
+            switch (cameraStatus?.mode){
+            case 0xE8:
+                cmode = 0x00
+            case 0xE9:
+                cmode = 0x01
+            case 0xEA:
+                cmode = 0x02
+            default:
+                print("Unknown mode")
+            }
+            if((0xE8...0xEA).contains(cameraStatus!.mode)){
+                sendCameraCommand(command: Data([0x02,0x01,cmode]))
+            }
         }
     }
     
