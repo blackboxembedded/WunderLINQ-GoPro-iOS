@@ -37,6 +37,18 @@ class AboutViewController: UIViewController, MFMailComposeViewControllerDelegate
         }
     }
     
+    @IBAction func documentationBtnPressed(_ sender: Any) {
+        guard let url = URL(string: "https://blackboxembedded.github.io/WunderLINQ-Documentation/en/index-gopro-ios.html") else {
+            return //be safe
+        }
+        
+        if #available(iOS 10.0, *) {
+            UIApplication.shared.open(url, options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]), completionHandler: nil)
+        } else {
+            UIApplication.shared.openURL(url)
+        }
+    }
+    
     @IBAction func sendLogsBtnPressed(_ sender: Any) {
         if MFMailComposeViewController.canSendMail() {
             var dateFormatter: DateFormatter {
@@ -49,16 +61,16 @@ class AboutViewController: UIViewController, MFMailComposeViewControllerDelegate
             let today = dateFormatter.string(from: Date())
 
             let mailComposer = MFMailComposeViewController()
-            mailComposer.setSubject("WunderLINQ Insta360 iOS Logs \(today)")
+            mailComposer.setSubject("WunderLINQ GoPro iOS Logs \(today)")
             mailComposer.setMessageBody("App Version: \(getAppInfo())\niOS Version: \(getOSInfo())\nDevice: \(UIDevice.current.modelName)\n\(NSLocalizedString("sendlogs_body", comment: ""))", isHTML: false)
             mailComposer.setToRecipients(["support@blackboxembedded.com"])
             // Get the documents folder url
             let documentDirectory = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
             // Destination url for the log file to be saved
-            let logURL = documentDirectory.appendingPathComponent("wunderlinq.log")
+            let logURL = documentDirectory.appendingPathComponent("wunderlinq-gopro.log")
             do {
                 let logAttachmentData = try Data(contentsOf: logURL)
-                mailComposer.addAttachmentData(logAttachmentData, mimeType: "text/log", fileName: "wunderlinq.log")
+                mailComposer.addAttachmentData(logAttachmentData, mimeType: "text/log", fileName: "wunderlinq-gopro.log")
             } catch let error {
                 print("We have encountered error \(error.localizedDescription)")
             }
@@ -95,20 +107,6 @@ class AboutViewController: UIViewController, MFMailComposeViewControllerDelegate
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let backBtn = UIButton()
-        backBtn.setImage(UIImage(named: "Left")?.withRenderingMode(.alwaysTemplate), for: .normal)
-        if #available(iOS 13.0, *) {
-            backBtn.tintColor = UIColor(named: "imageTint")
-        }
-        backBtn.addTarget(self, action: #selector(leftScreen), for: .touchUpInside)
-        let backButton = UIBarButtonItem(customView: backBtn)
-        let backButtonWidth = backButton.customView?.widthAnchor.constraint(equalToConstant: 30)
-        backButtonWidth?.isActive = true
-        let backButtonHeight = backButton.customView?.heightAnchor.constraint(equalToConstant: 30)
-        backButtonHeight?.isActive = true
-        self.navigationItem.title = NSLocalizedString("about_title", comment: "")
-        self.navigationItem.leftBarButtonItems = [backButton]
-        
         if let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String {
             let versionLabelString = NSLocalizedString("version_label", comment: "")
             self.versionLabel.text = "\(versionLabelString) \(version)"

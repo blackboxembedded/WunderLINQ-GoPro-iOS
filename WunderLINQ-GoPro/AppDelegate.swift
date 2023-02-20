@@ -26,6 +26,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Keep screen unlocked
         application.isIdleTimerDisabled = true
         
+        // Create and write to log file
+        let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
+        let documentsDirectory = paths[0]
+        let fileName = "wunderlinq-gopro.log"
+        let logFilePath = (documentsDirectory as NSString).appendingPathComponent(fileName)
+        freopen(logFilePath.cString(using: String.Encoding.ascii)!, "a+", stderr)
+        
         return true
     }
 

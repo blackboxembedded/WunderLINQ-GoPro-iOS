@@ -8,6 +8,7 @@ target 'WunderLINQ-GoPro' do
   pod 'MobileVLCKit', '~> 3.5.1'
   pod 'InAppSettingsKit', '~> 3.3.5'
   pod 'ChromaColorPicker', '~> 2.0.2'
+  pod 'Popovers'
 
   target 'WunderLINQ-GoProTests' do
     inherit! :search_paths
