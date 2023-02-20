@@ -26,6 +26,7 @@
 		7E17C2D229560E0B00CF2E96 /* WunderLINQ_GoProTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E17C2D129560E0B00CF2E96 /* WunderLINQ_GoProTests.swift */; };
 		7E17C2DC29560E0B00CF2E96 /* WunderLINQ_GoProUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E17C2DB29560E0B00CF2E96 /* WunderLINQ_GoProUITests.swift */; };
 		7E17C2DE29560E0B00CF2E96 /* WunderLINQ_GoProUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E17C2DD29560E0B00CF2E96 /* WunderLINQ_GoProUITestsLaunchTests.swift */; };
+		7E21DEA329A2DD320087185C /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E21DEA229A2DD320087185C /* AboutViewController.swift */; };
 		7E449B9F295F6137001C2039 /* PreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E449B9E295F6137001C2039 /* PreviewViewController.swift */; };
 		7E449BA4295F7D98001C2039 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7E449BA6295F7D98001C2039 /* Localizable.strings */; };
 		7E449BB3295F96E1001C2039 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 7E449BB2295F96E1001C2039 /* Settings.bundle */; };
@@ -78,6 +79,7 @@
 		7E17C2D729560E0B00CF2E96 /* WunderLINQ-GoProUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "WunderLINQ-GoProUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E17C2DB29560E0B00CF2E96 /* WunderLINQ_GoProUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WunderLINQ_GoProUITests.swift; sourceTree = "<group>"; };
 		7E17C2DD29560E0B00CF2E96 /* WunderLINQ_GoProUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WunderLINQ_GoProUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		7E21DEA229A2DD320087185C /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		7E449B9E295F6137001C2039 /* PreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewViewController.swift; sourceTree = "<group>"; };
 		7E449BA5295F7D98001C2039 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		7E449BA7295F7DBC001C2039 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -167,6 +169,7 @@
 			isa = PBXGroup;
 			children = (
 				7E046BB4295B65C30061A5F4 /* WunderLINQ-GoPro.entitlements */,
+				7E21DEA229A2DD320087185C /* AboutViewController.swift */,
 				7E17C2BA29560E0900CF2E96 /* AppDelegate.swift */,
 				7E17C2BC29560E0900CF2E96 /* SceneDelegate.swift */,
 				7E046BA22956160D0061A5F4 /* CameraError.swift */,
@@ -481,6 +484,7 @@
 				7E046BB1295B59130061A5F4 /* SpinnerViewController.swift in Sources */,
 				7E046BAD295616C60061A5F4 /* Atomic.swift in Sources */,
 				7E17C2BD29560E0900CF2E96 /* SceneDelegate.swift in Sources */,
+				7E21DEA329A2DD320087185C /* AboutViewController.swift in Sources */,
 				7E046BA32956160D0061A5F4 /* CameraError.swift in Sources */,
 				7E046BAB295616C30061A5F4 /* CentralManager.swift in Sources */,
 				7E046BAF295629A90061A5F4 /* CameraViewController.swift in Sources */,

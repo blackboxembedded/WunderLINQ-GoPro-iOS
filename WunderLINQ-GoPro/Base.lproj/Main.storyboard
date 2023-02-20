@@ -69,6 +69,7 @@
                         <outlet property="tableView" destination="4QJ-Tq-vRc" id="xdV-rK-Qip"/>
                         <segue destination="cAf-BU-IIZ" kind="show" identifier="cameraListToCameraView" id="VRz-tg-pu2"/>
                         <segue destination="8zk-r4-3vb" kind="show" id="rAD-1Q-qM6"/>
+                        <segue destination="syn-vw-8aC" kind="show" id="9Uo-UY-gM4"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QQ0-7R-Ebx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -198,12 +199,84 @@
             </objects>
             <point key="canvasLocation" x="-1054" y="392"/>
         </scene>
+        <!--About-->
+        <scene sceneID="HMo-MX-PMw">
+            <objects>
+                <viewController title="About" id="syn-vw-8aC" customClass="AboutViewController" customModule="WunderLINQ" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="HqH-K4-lum">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wunderlinq_logo" translatesAutoresizingMaskIntoConstraints="NO" id="h36-Tz-Et7">
+                                <rect key="frame" x="16" y="128" width="361" height="53"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Version: x.x.x" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="leM-Bw-It1">
+                                <rect key="frame" x="0.0" y="206" width="393" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dtR-7M-CcF">
+                                <rect key="frame" x="0.0" y="228" width="393" height="33"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <state key="normal" title="Black Box Embedded, LLC">
+                                    <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="corpNameBtnPressed:" destination="syn-vw-8aC" eventType="touchUpInside" id="mJS-5d-rDQ"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jMz-8u-SE8" customClass="LocalisableButton" customModule="WunderLINQ" customModuleProvider="target">
+                                <rect key="frame" x="16" y="277" width="361" height="30"/>
+                                <color key="backgroundColor" name="imageTint"/>
+                                <state key="normal" title="Send Logs">
+                                    <color key="titleColor" name="backgrounds"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="localisedKey" value="btn_sendlogs_title"/>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="sendLogsBtnPressed:" destination="syn-vw-8aC" eventType="touchUpInside" id="2lA-Ss-EnG"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="yzM-Yl-2m0"/>
+                        <color key="backgroundColor" name="backgrounds"/>
+                        <constraints>
+                            <constraint firstItem="leM-Bw-It1" firstAttribute="top" secondItem="h36-Tz-Et7" secondAttribute="bottom" constant="25" id="1Wy-Ds-v14"/>
+                            <constraint firstItem="yzM-Yl-2m0" firstAttribute="trailing" secondItem="h36-Tz-Et7" secondAttribute="trailing" constant="16" id="HvP-Rr-89J"/>
+                            <constraint firstItem="jMz-8u-SE8" firstAttribute="leading" secondItem="yzM-Yl-2m0" secondAttribute="leading" constant="16" id="O0w-aY-7XU"/>
+                            <constraint firstItem="yzM-Yl-2m0" firstAttribute="trailing" secondItem="leM-Bw-It1" secondAttribute="trailing" id="OrH-jc-irA"/>
+                            <constraint firstItem="dtR-7M-CcF" firstAttribute="top" secondItem="leM-Bw-It1" secondAttribute="bottom" constant="5" id="Qzp-36-9GC"/>
+                            <constraint firstItem="yzM-Yl-2m0" firstAttribute="trailing" secondItem="dtR-7M-CcF" secondAttribute="trailing" id="SLO-Iy-41T"/>
+                            <constraint firstItem="jMz-8u-SE8" firstAttribute="top" secondItem="dtR-7M-CcF" secondAttribute="bottom" constant="16" id="WWR-uB-bit"/>
+                            <constraint firstItem="yzM-Yl-2m0" firstAttribute="trailing" secondItem="jMz-8u-SE8" secondAttribute="trailing" constant="16" id="XCu-8u-AGq"/>
+                            <constraint firstItem="leM-Bw-It1" firstAttribute="leading" secondItem="yzM-Yl-2m0" secondAttribute="leading" id="Z6A-sw-C7X"/>
+                            <constraint firstItem="h36-Tz-Et7" firstAttribute="leading" secondItem="yzM-Yl-2m0" secondAttribute="leading" constant="16" id="cHu-Je-FpS"/>
+                            <constraint firstItem="dtR-7M-CcF" firstAttribute="leading" secondItem="yzM-Yl-2m0" secondAttribute="leading" id="jlH-UF-5fV"/>
+                            <constraint firstItem="h36-Tz-Et7" firstAttribute="top" secondItem="yzM-Yl-2m0" secondAttribute="top" constant="25" id="pOb-2P-6Ym"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="About" id="ftk-Uj-ZhP"/>
+                    <connections>
+                        <outlet property="logoImageView" destination="h36-Tz-Et7" id="5nN-2x-mdM"/>
+                        <outlet property="versionLabel" destination="leM-Bw-It1" id="cd0-2o-P8E"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="T4c-Fc-hsn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1054" y="1071"/>
+        </scene>
     </scenes>
     <color key="tintColor" name="imageTint"/>
     <resources>
         <image name="chevron.right" catalog="system" width="97" height="128"/>
+        <image name="wunderlinq_logo" width="247" height="53"/>
         <namedColor name="AccentColor">
             <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="backgrounds">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="imageTint">
             <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
