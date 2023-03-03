@@ -21,5 +21,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 "task_title_stop_timelapse" = "Stop Timelapse Recording";
 "pref_highlightColor_title" = "Highlight Color";
 "sendlogs_intent_title" = "Enviar registros…";
-"sendlogs_body" = "Por favor describa su problema a continuación:";
+"sendlogs_body" = "Por favor describa su problema a continuación:\n";
 "btn_sendlogs_title" = "Enviar registros";
+"close_label" = "Cerrar";
