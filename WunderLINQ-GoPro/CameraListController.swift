@@ -32,7 +32,7 @@ class CameraListController: UITableViewController {
     var itemRow = 0
     
     lazy var menu = Templates.UIKitMenu(sourceView: menuBtn!) {
-        Templates.MenuButton(title: NSLocalizedString("appsettings_label", comment: ""), systemImage: nil) { print("test");self.menuButton() }
+        Templates.MenuButton(title: NSLocalizedString("appsettings_label", comment: ""), systemImage: nil) { self.menuButton() }
         Templates.MenuButton(title: NSLocalizedString("about_label", comment: ""), systemImage: nil) { self.aboutButton() }
         Templates.MenuButton(title: NSLocalizedString("close_label", comment: ""), systemImage: nil) { exit(0)}
     }
@@ -125,7 +125,6 @@ class CameraListController: UITableViewController {
     }
     
     @objc func menuButton() {
-        print("menuButton()")
         let appSettingsViewController = IASKAppSettingsViewController()
         self.navigationController!.pushViewController(appSettingsViewController, animated: true)
     }
