@@ -32,13 +32,10 @@ class CameraListController: UITableViewController {
     var itemRow = 0
     
     lazy var menu = Templates.UIKitMenu(sourceView: menuBtn!) {
-        Templates.MenuButton(title: NSLocalizedString("appsettings_label", comment: ""), systemImage: nil) { self.menuButton() }
+        Templates.MenuButton(title: NSLocalizedString("appsettings_label", comment: ""), systemImage: nil) { print("test");self.menuButton() }
         Templates.MenuButton(title: NSLocalizedString("about_label", comment: ""), systemImage: nil) { self.aboutButton() }
         Templates.MenuButton(title: NSLocalizedString("close_label", comment: ""), systemImage: nil) { exit(0)}
-    } fadeLabel: { [weak self] fade in
-        //self?.label.alpha = fade ? 0.5 : 1
     }
-
     override func viewDidLoad() {
         super.viewDidLoad()
             
@@ -128,6 +125,7 @@ class CameraListController: UITableViewController {
     }
     
     @objc func menuButton() {
+        print("menuButton()")
         let appSettingsViewController = IASKAppSettingsViewController()
         self.navigationController!.pushViewController(appSettingsViewController, animated: true)
     }
@@ -137,58 +135,63 @@ class CameraListController: UITableViewController {
     }
     
     @objc func enterKey() {
-        let child = SpinnerViewController()
-        //Add the spinner view controller
-        addChild(child)
-        child.view.frame = view.frame
-        view.addSubview(child.view)
-        child.didMove(toParent: self)
-        
-        let selected: Peripheral = scanner.peripherals[itemRow]
-        selected.connect { error in
-            //Remove the spinner view controller
-            child.willMove(toParent: nil)
-            child.view.removeFromSuperview()
-            child.removeFromParent()
-            if error != nil {
-                NSLog("Error connecting to \(selected.name)")
-                return
+        if (scanner.peripherals.count > 0){
+            let child = SpinnerViewController()
+            //Add the spinner view controller
+            addChild(child)
+            child.view.frame = view.frame
+            view.addSubview(child.view)
+            child.didMove(toParent: self)
+            
+            let selected: Peripheral = scanner.peripherals[itemRow]
+            selected.connect { error in
+                //Remove the spinner view controller
+                child.willMove(toParent: nil)
+                child.view.removeFromSuperview()
+                child.removeFromParent()
+                if error != nil {
+                    NSLog("Error connecting to \(selected.name)")
+                    return
+                }
+                NSLog("Connected to \(selected.name)!")
+                self.peripheral = selected
+                let destinationVC = CameraViewController()
+                destinationVC.peripheral = selected
+                self.performSegue(withIdentifier: "cameraListToCameraView", sender: self)
             }
-            NSLog("Connected to \(selected.name)!")
-            self.peripheral = selected
-            let destinationVC = CameraViewController()
-            destinationVC.peripheral = selected
-            self.performSegue(withIdentifier: "cameraListToCameraView", sender: self)
         }
     }
     
     @objc func upKey() {
-        var nextRow = 0
-        if (itemRow == 0){
-            nextRow = scanner.peripherals.count - 1
-        } else if (itemRow < scanner.peripherals.count){
-            nextRow = itemRow - 1
+        if (scanner.peripherals.count > 0){
+            var nextRow = 0
+            if (itemRow == 0){
+                nextRow = scanner.peripherals.count - 1
+            } else if (itemRow < scanner.peripherals.count){
+                nextRow = itemRow - 1
+            }
+            
+            self.cameraListTableView.scrollToRow(at: IndexPath(row: nextRow, section: 0), at: .middle, animated: true)
+            self.view.layoutIfNeeded()
+            cameraListTableView.reloadData()
+            itemRow = nextRow
         }
-        
-        self.cameraListTableView.scrollToRow(at: IndexPath(row: nextRow, section: 0), at: .middle, animated: true)
-        self.view.layoutIfNeeded()
-        cameraListTableView.reloadData()
-        itemRow = nextRow
     }
     
     @objc func downKey() {
-        
-        var nextRow = 0
-        if (itemRow == (scanner.peripherals.count - 1)){
-            nextRow = 0
-        } else if (itemRow < scanner.peripherals.count ){
-            nextRow = itemRow + 1
+        if (scanner.peripherals.count > 0){
+            var nextRow = 0
+            if (itemRow == (scanner.peripherals.count - 1)){
+                nextRow = 0
+            } else if (itemRow < scanner.peripherals.count ){
+                nextRow = itemRow + 1
+            }
+            
+            self.cameraListTableView.scrollToRow(at: IndexPath(row: nextRow, section: 0), at: .middle, animated: true)
+            self.view.layoutIfNeeded()
+            cameraListTableView.reloadData()
+            itemRow = nextRow
         }
-        
-        self.cameraListTableView.scrollToRow(at: IndexPath(row: nextRow, section: 0), at: .middle, animated: true)
-        self.view.layoutIfNeeded()
-        cameraListTableView.reloadData()
-        itemRow = nextRow
     }
     
     @objc func escapeKey() {
