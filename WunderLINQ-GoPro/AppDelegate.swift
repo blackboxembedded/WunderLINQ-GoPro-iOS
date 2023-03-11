@@ -22,10 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        
-        // Keep screen unlocked
-        application.isIdleTimerDisabled = true
-
+    
         // Create and write to log file
         if UserDefaults.standard.bool(forKey: "debug_logging_preference") {
             let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
@@ -50,6 +47,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
             freopen(logFilePath.cString(using: String.Encoding.ascii)!, "a+", stderr)
         }
+        
+        // Keep screen unlocked
+        UIApplication.shared.isIdleTimerDisabled = true
         
         return true
     }

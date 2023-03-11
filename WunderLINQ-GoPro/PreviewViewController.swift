@@ -47,6 +47,9 @@ class PreviewViewController: UIViewController {
         self.child = SpinnerViewController()
         addChild(child)
         child.view.frame = view.frame
+        
+        // Keep screen unlocked
+        UIApplication.shared.isIdleTimerDisabled = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
