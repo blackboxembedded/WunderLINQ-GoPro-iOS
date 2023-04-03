@@ -59,6 +59,9 @@ class CameraViewController: UIViewController {
         recordButton.backgroundColor = highlightColor
         recordButton.addTarget(self, action: #selector(toggleShutter), for: .touchUpInside)
         recordButton.isHidden = true
+        
+        // Keep screen unlocked
+        UIApplication.shared.isIdleTimerDisabled = true
     }
     
     override func viewWillAppear(_ animated: Bool) {

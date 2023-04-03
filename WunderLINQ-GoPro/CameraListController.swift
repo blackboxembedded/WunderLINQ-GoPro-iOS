@@ -34,8 +34,9 @@ class CameraListController: UITableViewController {
     lazy var menu = Templates.UIKitMenu(sourceView: menuBtn!) {
         Templates.MenuButton(title: NSLocalizedString("appsettings_label", comment: ""), systemImage: nil) { self.menuButton() }
         Templates.MenuButton(title: NSLocalizedString("about_label", comment: ""), systemImage: nil) { self.aboutButton() }
-        Templates.MenuButton(title: NSLocalizedString("close_label", comment: ""), systemImage: nil) { exit(0)}
+        Templates.MenuButton(title: NSLocalizedString("close_label", comment: ""), systemImage: nil) { exit(0) }
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
             
@@ -58,6 +59,8 @@ class CameraListController: UITableViewController {
             NSLog("Disconnecting to \(peripheral.name)..")
             peripheral.disconnect()
         }
+        // Keep screen unlocked
+        UIApplication.shared.isIdleTimerDisabled = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
