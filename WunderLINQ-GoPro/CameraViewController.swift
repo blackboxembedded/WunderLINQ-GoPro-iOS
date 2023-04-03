@@ -283,8 +283,9 @@ class CameraViewController: UIViewController {
     }
     
     @objc func rightKey() {
-        enableWifi()
-        
+        if UserDefaults.standard.bool(forKey: "prefEnablePreview") {
+            enableWifi()
+        }
     }
     
     @objc func escapeKey() {
