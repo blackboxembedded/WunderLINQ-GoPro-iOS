@@ -10,6 +10,15 @@ decode performance and fault data.
 
 This app can currently control GoPro Cameras that support the [OpenGoPro](https://gopro.github.io/OpenGoPro/) API
 
+<a href="https://itunes.apple.com/us/app/wunderlinq-gopro-remote/id1661727055?ls=1&mt=8" target="_blank">
+<img src="https://blackboxembedded.github.io/WunderLINQ-Documentation/en/images-localized/badge_store_appstore.png" alt="Get it on AppStore" height="60"/></a>
+
+<p>
+<a href="https://weblate.blackboxembedded.com/engage/wunderlinq/">
+<img src="https://weblate.blackboxembedded.com/widgets/wunderlinq/-/wunderlinq-gopro-ios/svg-badge.svg" alt="Translation status" />
+</a>
+</p>
+
 ## Build Instructions
 1. Clone the project and open the workspace in Xcode
 
