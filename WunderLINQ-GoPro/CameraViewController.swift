@@ -226,10 +226,12 @@ class CameraViewController: UIViewController {
     }
     
     @objc func enterKey() {
+        SoundManager().playSoundEffect("enter")
         toggleShutter()
     }
     
     @objc func upKey() {
+        SoundManager().playSoundEffect("directional")
         if (cameraStatus != nil){
             if (cameraStatus?.mode == 0x00) {
                 getCameraStatus()
@@ -257,6 +259,7 @@ class CameraViewController: UIViewController {
     }
     
     @objc func downKey() {
+        SoundManager().playSoundEffect("directional")
         if (cameraStatus != nil){
             if (cameraStatus?.mode == 0x00) {
                 getCameraStatus()
@@ -284,16 +287,19 @@ class CameraViewController: UIViewController {
     }
     
     @objc func leftKey() {
+        SoundManager().playSoundEffect("directional")
         navigationController?.popToRootViewController(animated: true)
     }
     
     @objc func rightKey() {
+        SoundManager().playSoundEffect("enter")
         if UserDefaults.standard.bool(forKey: "prefEnablePreview") {
             enableWifi()
         }
     }
     
     @objc func escapeKey() {
+        SoundManager().playSoundEffect("enter")
         guard let url = URL(string: "wunderlinq://") else {
             return
         }

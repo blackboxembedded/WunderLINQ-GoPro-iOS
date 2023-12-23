@@ -139,6 +139,7 @@ class CameraListController: UITableViewController {
     }
     
     @objc func enterKey() {
+        SoundManager().playSoundEffect("enter")
         if (scanner.peripherals.count > 0){
             let child = SpinnerViewController()
             //Add the spinner view controller
@@ -167,6 +168,7 @@ class CameraListController: UITableViewController {
     }
     
     @objc func upKey() {
+        SoundManager().playSoundEffect("directional")
         if (scanner.peripherals.count > 0){
             var nextRow = 0
             if (itemRow == 0){
@@ -183,6 +185,7 @@ class CameraListController: UITableViewController {
     }
     
     @objc func downKey() {
+        SoundManager().playSoundEffect("directional")
         if (scanner.peripherals.count > 0){
             var nextRow = 0
             if (itemRow == (scanner.peripherals.count - 1)){
@@ -199,6 +202,7 @@ class CameraListController: UITableViewController {
     }
     
     @objc func escapeKey() {
+        SoundManager().playSoundEffect("enter")
         guard let url = URL(string: "wunderlinq://") else {
             return
         }

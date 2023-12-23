@@ -74,10 +74,12 @@ class PreviewViewController: UIViewController {
     }
     
     @objc func leftKey() {
+        SoundManager().playSoundEffect("directional")
         self.dismiss(animated: true, completion: nil)
     }
     
     @objc func escapeKey() {
+        SoundManager().playSoundEffect("enter")
         guard let url = URL(string: "wunderlinq://") else {
             return
         }

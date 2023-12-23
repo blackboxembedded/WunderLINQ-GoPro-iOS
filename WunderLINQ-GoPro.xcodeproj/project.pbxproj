@@ -32,6 +32,9 @@
 		7E449BB3295F96E1001C2039 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 7E449BB2295F96E1001C2039 /* Settings.bundle */; };
 		7E449BB5295F9812001C2039 /* ColorPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E449BB4295F9812001C2039 /* ColorPickerViewController.swift */; };
 		7EA884F92971DA0200D12D79 /* CameraTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA884F82971DA0200D12D79 /* CameraTableViewCell.swift */; };
+		D80366072B378C0900F48637 /* directional.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D80366052B378C0900F48637 /* directional.mp3 */; };
+		D80366082B378C0900F48637 /* enter.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D80366062B378C0900F48637 /* enter.mp3 */; };
+		D803660A2B378C4E00F48637 /* SoundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D80366092B378C4E00F48637 /* SoundManager.swift */; };
 		D8774C3B29A31CBE0053DB09 /* LocalisableButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8774C3929A31CBE0053DB09 /* LocalisableButton.swift */; };
 		D8774C3C29A31CBE0053DB09 /* LocalisableLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8774C3A29A31CBE0053DB09 /* LocalisableLabel.swift */; };
 /* End PBXBuildFile section */
@@ -100,6 +103,9 @@
 		7EA884F82971DA0200D12D79 /* CameraTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraTableViewCell.swift; sourceTree = "<group>"; };
 		8E7EB88A26FD224C0E2890F5 /* Pods-WunderLINQ-GoPro-WunderLINQ-GoProUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WunderLINQ-GoPro-WunderLINQ-GoProUITests.release.xcconfig"; path = "Target Support Files/Pods-WunderLINQ-GoPro-WunderLINQ-GoProUITests/Pods-WunderLINQ-GoPro-WunderLINQ-GoProUITests.release.xcconfig"; sourceTree = "<group>"; };
 		B9CB9F5984D7ACDA34942B96 /* Pods_WunderLINQ_GoProTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WunderLINQ_GoProTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D80366052B378C0900F48637 /* directional.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = directional.mp3; sourceTree = "<group>"; };
+		D80366062B378C0900F48637 /* enter.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = enter.mp3; sourceTree = "<group>"; };
+		D80366092B378C4E00F48637 /* SoundManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SoundManager.swift; sourceTree = "<group>"; };
 		D8774C3929A31CBE0053DB09 /* LocalisableButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalisableButton.swift; sourceTree = "<group>"; };
 		D8774C3A29A31CBE0053DB09 /* LocalisableLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalisableLabel.swift; sourceTree = "<group>"; };
 		D896D32B295D1A1800B7FEAD /* WunderLINQ-GoPro-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WunderLINQ-GoPro-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -172,6 +178,7 @@
 		7E17C2B929560E0900CF2E96 /* WunderLINQ-GoPro */ = {
 			isa = PBXGroup;
 			children = (
+				D80366042B378BAC00F48637 /* mp3 */,
 				D8774C3929A31CBE0053DB09 /* LocalisableButton.swift */,
 				D8774C3A29A31CBE0053DB09 /* LocalisableLabel.swift */,
 				7E046BB4295B65C30061A5F4 /* WunderLINQ-GoPro.entitlements */,
@@ -189,6 +196,7 @@
 				7E046BA7295616C20061A5F4 /* Peripheral.swift */,
 				7E046BA8295616C30061A5F4 /* Peripheral+Camera.swift */,
 				7E046BAC295616C60061A5F4 /* Atomic.swift */,
+				D80366092B378C4E00F48637 /* SoundManager.swift */,
 				7E17C2C029560E0900CF2E96 /* Main.storyboard */,
 				7E17C2C329560E0B00CF2E96 /* Assets.xcassets */,
 				7E17C2C529560E0B00CF2E96 /* LaunchScreen.storyboard */,
@@ -215,6 +223,15 @@
 				7E17C2DD29560E0B00CF2E96 /* WunderLINQ_GoProUITestsLaunchTests.swift */,
 			);
 			path = "WunderLINQ-GoProUITests";
+			sourceTree = "<group>";
+		};
+		D80366042B378BAC00F48637 /* mp3 */ = {
+			isa = PBXGroup;
+			children = (
+				D80366052B378C0900F48637 /* directional.mp3 */,
+				D80366062B378C0900F48637 /* enter.mp3 */,
+			);
+			path = mp3;
 			sourceTree = "<group>";
 		};
 		EB519B64F0E020E3311FF77F /* Frameworks */ = {
@@ -351,6 +368,8 @@
 				7E17C2C729560E0B00CF2E96 /* LaunchScreen.storyboard in Resources */,
 				7E449BA4295F7D98001C2039 /* Localizable.strings in Resources */,
 				7E449BB3295F96E1001C2039 /* Settings.bundle in Resources */,
+				D80366082B378C0900F48637 /* enter.mp3 in Resources */,
+				D80366072B378C0900F48637 /* directional.mp3 in Resources */,
 				7E17C2C429560E0B00CF2E96 /* Assets.xcassets in Resources */,
 				7E17C2C229560E0900CF2E96 /* Main.storyboard in Resources */,
 			);
@@ -496,6 +515,7 @@
 				7E046BA32956160D0061A5F4 /* CameraError.swift in Sources */,
 				7E046BAB295616C30061A5F4 /* CentralManager.swift in Sources */,
 				7E046BAF295629A90061A5F4 /* CameraViewController.swift in Sources */,
+				D803660A2B378C4E00F48637 /* SoundManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
