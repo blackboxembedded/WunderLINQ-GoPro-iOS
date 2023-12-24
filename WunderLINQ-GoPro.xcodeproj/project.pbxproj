@@ -179,9 +179,9 @@
 			isa = PBXGroup;
 			children = (
 				D80366042B378BAC00F48637 /* mp3 */,
+				D80366092B378C4E00F48637 /* SoundManager.swift */,
 				D8774C3929A31CBE0053DB09 /* LocalisableButton.swift */,
 				D8774C3A29A31CBE0053DB09 /* LocalisableLabel.swift */,
-				7E046BB4295B65C30061A5F4 /* WunderLINQ-GoPro.entitlements */,
 				7E21DEA229A2DD320087185C /* AboutViewController.swift */,
 				7E17C2BA29560E0900CF2E96 /* AppDelegate.swift */,
 				7E17C2BC29560E0900CF2E96 /* SceneDelegate.swift */,
@@ -196,7 +196,7 @@
 				7E046BA7295616C20061A5F4 /* Peripheral.swift */,
 				7E046BA8295616C30061A5F4 /* Peripheral+Camera.swift */,
 				7E046BAC295616C60061A5F4 /* Atomic.swift */,
-				D80366092B378C4E00F48637 /* SoundManager.swift */,
+				7E046BB4295B65C30061A5F4 /* WunderLINQ-GoPro.entitlements */,
 				7E17C2C029560E0900CF2E96 /* Main.storyboard */,
 				7E17C2C329560E0B00CF2E96 /* Assets.xcassets */,
 				7E17C2C529560E0B00CF2E96 /* LaunchScreen.storyboard */,
@@ -729,7 +729,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.6;
+				MARKETING_VERSION = 1.7;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.blackboxembedded.WunderLINQ-GoPro";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -763,7 +763,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.6;
+				MARKETING_VERSION = 1.7;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.blackboxembedded.WunderLINQ-GoPro";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
