@@ -292,8 +292,8 @@ class CameraViewController: UIViewController {
     }
     
     @objc func rightKey() {
-        SoundManager().playSoundEffect("enter")
         if UserDefaults.standard.bool(forKey: "prefEnablePreview") {
+            SoundManager().playSoundEffect("enter")
             enableWifi()
         }
     }
