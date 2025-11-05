@@ -1,24 +1,20 @@
 PODS:
   - ChromaColorPicker (2.0.2)
-  - InAppSettingsKit (3.3.6)
-  - MobileVLCKit (3.5.1)
+  - MobileVLCKit (3.6.0)
 
 DEPENDENCIES:
   - ChromaColorPicker (~> 2.0.2)
-  - InAppSettingsKit (~> 3.3.5)
-  - MobileVLCKit (~> 3.5.1)
+  - MobileVLCKit (~> 3.6.0)
 
 SPEC REPOS:
   trunk:
     - ChromaColorPicker
-    - InAppSettingsKit
     - MobileVLCKit
 
 SPEC CHECKSUMS:
   ChromaColorPicker: 307585f2dc23d4d72f24cad320c1e08825cb5c09
-  InAppSettingsKit: 37df0b44132380d4c7db6fc7cded92997e29873a
-  MobileVLCKit: 144d5f565512d1147d63b0fa1379231b3fd66535
+  MobileVLCKit: 8fe98ae53b7464f32e4bdf527cc7d53053e4d3a5
 
-PODFILE CHECKSUM: 698a60f8f1a3c16c20075cb15a311b07d231af2c
+PODFILE CHECKSUM: a7833544e1d044fa4ce5edce9efec69f09f99fd1
 
 COCOAPODS: 1.14.3
